@@ -1,6 +1,5 @@
 package com.wow4j.business.config.threadPool;
 
-import cn.hippo4j.starter.core.DynamicThreadPool;
 import com.wow4j.business.config.threadPool.property.FileUploadThreadPoolProperty;
 import com.wow4j.business.config.threadPool.property.TaskThreadPoolProperty;
 import com.wow4j.business.config.threadPool.property.base.BaseThreadPoolProperty;
@@ -51,7 +50,6 @@ public class ThreadPoolConfig {
      * </p>
      */
     @Bean(value = "taskExecutor")
-    @DynamicThreadPool
     public ThreadPoolTaskExecutor taskExecutor() {
         return getThreadPoolTaskExecutor(taskThreadPoolProperty);
     }
