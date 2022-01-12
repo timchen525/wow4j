@@ -1,5 +1,6 @@
 package com.wow4j.business.config.threadPool.property;
 
+import com.wow4j.business.anno.ApolloConfigurationPropertiesDynamicRefresh;
 import com.wow4j.business.config.threadPool.property.base.BaseThreadPoolProperty;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "thread-pools.file-upload-thread-pool")
 @Component
 @Data
+@ApolloConfigurationPropertiesDynamicRefresh
 public class FileUploadThreadPoolProperty extends BaseThreadPoolProperty {
 
     /**

@@ -1,5 +1,6 @@
 package com.wow4j.business.controller;
 
+import com.wow4j.business.config.threadPool.property.FileUploadThreadPoolProperty;
 import com.wow4j.business.dao.mapper.UserMapper;
 import com.wow4j.business.domain.entity.UserEntity;
 import com.wow4j.business.service.TestService;
@@ -18,10 +19,11 @@ public class TestController {
     private UserMapper userMapper;
     @Autowired
     private TestService testService;
+    @Autowired
+    private FileUploadThreadPoolProperty fileUploadThreadPoolProperty;
 
     @GetMapping("/hello")
     public String hello() {
-        int i = 1/0;
         List<UserEntity> userEntities = userMapper.selectUserById();
         return "hello";
     }
