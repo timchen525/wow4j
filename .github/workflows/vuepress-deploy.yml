@@ -1,4 +1,4 @@
-name: A-TO-B:MASTER
+name: Build and Deploy
 on: [push]
 jobs:
   build-and-deploy:
@@ -7,11 +7,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Build and Deploy
-        uses: jenkey2011/vuepress-deploy@v1.8.1
+      - name: vuepress-deploy
+        uses: jenkey2011/vuepress-deploy@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_REPO: jenkey2011/vuepress-deploy-demo-target
+          TARGET_REPO: username/repo
           TARGET_BRANCH: master
           BUILD_SCRIPT: yarn && yarn build
-          BUILD_DIR: blog/.vuepress/dist/
+          BUILD_DIR: docs/.vuepress/dist
+          CNAME: https://www.xxx.com
