@@ -1,0 +1,2 @@
+- [主页](/zh-cn/sidebar/intro)
+- [联系我们](/zh-cn/navbar/contact_us.md)

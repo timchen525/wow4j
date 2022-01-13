@@ -1,0 +1,24 @@
+/* 置顶插件 */
+.to-top {
+    display: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: rgb(66, 185, 131);
+}
+
+/* 固定导航栏位置 */
+/* .app-nav {
+    position: fixed;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    left: 300px;
+    margin: 0;
+    padding: 25px 60px 0 0;
+}
+
+/* gitlab 右上角图表 */
+/* .github-corner {
+    z-index: 11;
+}  */
