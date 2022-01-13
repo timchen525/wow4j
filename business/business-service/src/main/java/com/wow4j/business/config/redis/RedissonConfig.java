@@ -1,7 +1,7 @@
-package com.wow4j.business.config.redisson;
+package com.wow4j.business.config.redis;
 
 import com.ctrip.framework.apollo.core.utils.StringUtils;
-import com.wow4j.business.config.redisson.property.RedissonProperty;
+import com.wow4j.business.config.redis.property.RedissonProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;

@@ -1,4 +1,4 @@
-package com.wow4j.business.config.redisson.property;
+package com.wow4j.business.config.redis.property;
 
 
 import lombok.Data;
