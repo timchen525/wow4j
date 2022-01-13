@@ -1,0 +1,6 @@
+- [简介](/zh-cn/sidebar/intro.md)
+- [快速入门](/zh-cn/sidebar/quick_start.md)
+- [使用教程](/zh-cn/sidebar/tutorial.md)
+    - [安装](/zh-cn/sidebar/install.md)
+- [常见问题](/zh-cn/sidebar/Q&A.md)
+- [版本说明](/zh-cn/sidebar/version_log.md)
