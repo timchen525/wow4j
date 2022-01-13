@@ -1,11 +1,11 @@
 <!-- style/demo_logo.png 替换成你的项目logo -->
 <img width="160px" style="border-radius:0%" bor src="style/demo_logo.png" />
 
-# **[Demo 平台使用教程](demo?id=我是-demo)**
+# **[wow4j 神奇项目使用手册](demo?id=我是-demo)**
 
 <!-- 您的平台主要功能介绍 -->
-- Demo  平台，致力于打造一个高效、实时、智能的通用平台。<br> 
-使用Demo 平台，轻松升职加薪，迎娶白富美，走上人生巅峰。 <br>
+- wow4j 神奇项目，致力于打造一个 java 侧开发，完整的开发功能，包括：常规后端技术，相关组件。<br> 
+使用 wow4j 平台，轻松升职加薪，迎娶白富美，走上人生巅峰。 <br>
 
 <!-- 您的 star -->
 ![](https://img.shields.io/badge/)
@@ -18,5 +18,5 @@
 </span>
 
 <!-- 这里替换成你的项目地址 -->
-[Github](http://github.com:8005/{你的项目地址}) 
+[Github](https://github.com/timchen525/wow4j) 
 [开始阅读](zh-cn/sidebar/intro)
