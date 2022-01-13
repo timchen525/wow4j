@@ -1,5 +1,5 @@
 <!-- style/demo_logo.png 替换成你的项目logo -->
-<img width="160px" style="border-radius:0%" bor src="style/demo_logo.png" />
+<img width="160px" style="border-radius:0%" bor src="style/java-logo.png" />
 
 # **[wow4j 神奇项目使用手册](demo?id=我是-demo)**
 
