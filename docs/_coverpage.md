@@ -1,6 +1,6 @@
 <img width="230px" style="border-radius:0%" bor src="images/java-logo.png" />
 
-# **[<big>wow4j 指南</big>](zh-cn/sidebar/intro)**
+# **[<big>wow4j 指南</big>](README)**
 
 > 一个神奇的 java 项目
 
