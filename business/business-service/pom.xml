@@ -111,6 +111,12 @@
             <artifactId>redisson</artifactId>
             <version>3.5.4</version> <!-- todo bom 有问题 -->
         </dependency>
+
+        <!--fastjson  -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
