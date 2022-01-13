@@ -1,6 +1,5 @@
 package com.wow4j.business.config.apollo;
 
-import com.ctrip.framework.apollo.core.ConfigConsts;
 import com.ctrip.framework.apollo.enums.PropertyChangeType;
 import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
@@ -17,6 +16,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * apollo 动态更新日志级别
+ */
 @Component
 @Slf4j
 @ConditionalOnBean(name = "loggingSystem")

@@ -18,6 +18,9 @@ import org.springframework.cloud.context.scope.refresh.RefreshScope;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * 实现 ConfigurationProperties 配置，使用 apollo 注解 ApolloConfigurationPropertiesDynamicRefresh 动态刷新
+ */
 @Component
 @Slf4j
 public class ApolloConfigurationPropertiesDynamicRefreshConfig implements BeanPostProcessor {
