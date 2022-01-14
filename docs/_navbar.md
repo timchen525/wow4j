@@ -1,3 +1,6 @@
 - [主页](/zh-cn/sidebar/intro)
 - [联系我们](/zh-cn/navbar/contact_us.md)
 - [规范](/zh-cn/navbar/specification.md)
+  - [git 规范](/zh-cn/navbar/specification/git_specification.md)
+  - [coding 规范](/zh-cn/navbar/specification/coding_specification.md)
+  - [技术文档规范](/zh-cn/navbar/specification/tech_doc_specification.md)
