@@ -1,7 +1,5 @@
 package com.wow4j.business.exception;
 
-import com.wow4j.business.BusinessApplication;
-
 /**
  * 业务异常
  * <P>统一返回 SystemResponseCodeConst.SYSTEM_ERROR</P>

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONAware;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
 import lombok.Data;
+
 import java.util.LinkedHashMap;
 import java.util.Objects;
 

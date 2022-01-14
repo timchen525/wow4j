@@ -1,7 +1,6 @@
 package com.wow4j.business.domain.vo;
 
 import com.wow4j.business.domain.dto.UserDTO;
-import com.wow4j.business.domain.entity.UserEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

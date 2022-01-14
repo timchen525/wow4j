@@ -1,7 +1,7 @@
 package com.wow4j.business.config.threadPool.property.base;
 
-import lombok.Data;
 import com.wow4j.business.enums.ThreadPoolRejectedPolicyEnum;
+import lombok.Data;
 
 /**
  * 线程池基础信息

@@ -2,12 +2,8 @@ package com.wow4j.business.constant.code.base;
 
 import com.wow4j.business.constant.code.LoginResponseCodeConst;
 import com.wow4j.business.constant.code.SystemResponseCodeConst;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

@@ -1,7 +1,6 @@
 package com.wow4j.business.handler;
 
 import com.wow4j.business.constant.code.SystemResponseCodeConst;
-import com.wow4j.business.constant.code.base.ResponseCodeConst;
 import com.wow4j.business.domain.Response;
 import com.wow4j.business.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
