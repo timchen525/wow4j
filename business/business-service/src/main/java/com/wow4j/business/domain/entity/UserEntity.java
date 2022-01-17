@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
+import com.wow4j.business.domain.entity.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "user")
-public class UserEntity {
+public class UserEntity extends BaseEntity {
 
     /**
      * 对应数据库的主键id
@@ -31,40 +32,4 @@ public class UserEntity {
     private Integer age;
 
     private String email;
-
-    /**
-     * 删除标记（逻辑删除）=> 对用户透明
-     */
-    @TableLogic
-    private Integer deleted;
-
-    /**
-     * 版本号（乐观锁） =》对用户透明
-     */
-    @Version
-    private Integer version;
-
-    /**
-     * 更新人 ID
-     */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String userIdUpdate;
-
-    /**
-     * 更新时间（自动填充）=》对用户透明
-     */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Long timeUpdate;
-
-    /**
-     * 创建人 ID
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private String userIdCreate;
-
-    /**
-     * 创建时间（自动填充）=》对用户透明
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private Long timeCreate;
 }
