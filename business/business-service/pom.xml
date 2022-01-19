@@ -121,6 +121,12 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.drtrang</groupId>
+            <artifactId>redisson-spring-boot2-starter</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
         <!-- json 相关 -->
         <!--fastjson  -->
         <dependency>

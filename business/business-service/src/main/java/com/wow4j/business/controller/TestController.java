@@ -6,6 +6,7 @@ import com.wow4j.business.domain.entity.UserEntity;
 import com.wow4j.business.service.TestService;
 import com.wow4j.business.service.middleware.lettuce.RedisLettuceComponent;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,8 @@ public class TestController {
     private FileUploadThreadPoolProperty fileUploadThreadPoolProperty;
     @Autowired
     private RedisLettuceComponent redisLettuceComponent;
+    @Autowired
+    private RedissonClient redissonClient;
 
 
     @GetMapping("/hello")
@@ -31,6 +34,9 @@ public class TestController {
         List<UserEntity> userEntities = userMapper.selectUserById();
         String test = redisLettuceComponent.get("test");
         log.info("test:{}", test);
+
+        String value =(String) redissonClient.getBucket("test").get();
+        log.error("value:{}.", value);
         return "hello";
     }
 
