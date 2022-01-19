@@ -188,7 +188,7 @@ public class RedisRedissonProperty {
     @Setter
     public static class SingleServerConfig extends RedisRedissonProperty.BaseConfig {
         /** 节点地址，格式：redis://host:port */
-        private String address = "redis://hadoop103:6379";
+        private String address = "redis://localhost:6379";
         /** 数据库编号，默认值：0 */
         private int database = 0;
         /** 最小空闲连接数，默认值：32 */
