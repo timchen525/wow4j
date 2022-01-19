@@ -9,6 +9,7 @@ import com.wow4j.business.exception.tool.FormativeException;
 public class BusinessException extends FormativeException {
 
     public BusinessException() {
+        super();
     }
 
     public BusinessException(String msg) {

@@ -4,6 +4,7 @@ import com.wow4j.business.config.threadPool.property.FileUploadThreadPoolPropert
 import com.wow4j.business.dao.mapper.UserMapper;
 import com.wow4j.business.domain.entity.UserEntity;
 import com.wow4j.business.service.TestService;
+import com.wow4j.business.service.middleware.lettuce.RedisLettuceComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +22,15 @@ public class TestController {
     private TestService testService;
     @Autowired
     private FileUploadThreadPoolProperty fileUploadThreadPoolProperty;
+    @Autowired
+    private RedisLettuceComponent redisLettuceComponent;
+
 
     @GetMapping("/hello")
     public String hello() {
         List<UserEntity> userEntities = userMapper.selectUserById();
+        String test = redisLettuceComponent.get("test");
+        log.info("test:{}", test);
         return "hello";
     }
 
