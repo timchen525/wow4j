@@ -1,4 +1,4 @@
-package com.wow4j.business.config.redis.redisson.enums;
+package com.wow4j.business.config.cache.remote.redis.redisson.enums;
 
 /**
  * Redis 服务端模式

@@ -1,4 +1,4 @@
-package com.wow4j.business.config.redis.lettuce;
+package com.wow4j.business.config.cache.remote.redis.lettuce;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

@@ -1,7 +1,7 @@
-package com.wow4j.business.config.redis.redisson;
+package com.wow4j.business.config.cache.remote.redis.redisson;
 
-import com.wow4j.business.config.redis.redisson.enums.RedissonTypeEnum;
-import com.wow4j.business.config.redis.redisson.property.RedisRedissonProperty;
+import com.wow4j.business.config.cache.remote.redis.redisson.enums.RedissonTypeEnum;
+import com.wow4j.business.config.cache.remote.redis.redisson.property.RedisRedissonProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

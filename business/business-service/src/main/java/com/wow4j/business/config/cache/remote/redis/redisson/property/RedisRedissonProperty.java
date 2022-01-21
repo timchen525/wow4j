@@ -1,9 +1,9 @@
-package com.wow4j.business.config.redis.redisson.property;
+package com.wow4j.business.config.cache.remote.redis.redisson.property;
 
-import com.wow4j.business.config.redis.redisson.enums.RedissonAddressResolverGroupFactoryEnum;
-import com.wow4j.business.config.redis.redisson.enums.RedissonCodecEnum;
-import com.wow4j.business.config.redis.redisson.enums.RedissonLoadBalancerEnum;
-import com.wow4j.business.config.redis.redisson.enums.RedissonTypeEnum;
+import com.wow4j.business.config.cache.remote.redis.redisson.enums.RedissonAddressResolverGroupFactoryEnum;
+import com.wow4j.business.config.cache.remote.redis.redisson.enums.RedissonCodecEnum;
+import com.wow4j.business.config.cache.remote.redis.redisson.enums.RedissonLoadBalancerEnum;
+import com.wow4j.business.config.cache.remote.redis.redisson.enums.RedissonTypeEnum;
 import io.netty.channel.EventLoopGroup;
 import lombok.Data;
 import lombok.Getter;

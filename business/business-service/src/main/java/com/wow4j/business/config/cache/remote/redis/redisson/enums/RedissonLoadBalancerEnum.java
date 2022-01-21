@@ -1,4 +1,4 @@
-package com.wow4j.business.config.redis.redisson.enums;
+package com.wow4j.business.config.cache.remote.redis.redisson.enums;
 
 import org.redisson.connection.balancer.LoadBalancer;
 import org.redisson.connection.balancer.RandomLoadBalancer;
