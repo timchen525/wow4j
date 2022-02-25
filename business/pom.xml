@@ -43,7 +43,10 @@
         <lombok.version>1.18.8</lombok.version>
         <apollo-client.version>1.7.0</apollo-client.version>
         <spring-cloud-context.version>2.0.3.RELEASE</spring-cloud-context.version>
-        <redisson.version>3.5.4</redisson.version>
+        <redisson.version>3.16.6</redisson.version>
+        <graphql-java.version>8.0</graphql-java.version>
+        <graphql-java-tools.version>5.2.3</graphql-java-tools.version>
+        <skywalking.version>8.9.0</skywalking.version>
     </properties>
 
     <dependencyManagement>
@@ -226,6 +229,26 @@
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
+
+            <!-- graphQL -->
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-tools</artifactId>
+                <version>${graphql-java-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java</artifactId>
+                <version>${graphql-java.version}</version>
+            </dependency>
+
+            <!-- SkyWalking -->
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-trace</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -242,8 +265,8 @@
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>dev/*</exclude>
-                    <exclude>sit/*</exclude>
-                    <exclude>pre/*</exclude>
+                    <exclude>test/*</exclude>
+                    <exclude>stage/*</exclude>
                     <exclude>prod/*</exclude>
                 </excludes>
             </resource>

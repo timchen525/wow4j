@@ -82,31 +82,37 @@ public class RedisRedissonConfig {
     @Bean(destroyMethod = "shutdown")
     @ConditionalOnMissingBean(RedissonClient.class)
     public RedissonClient redissonClient() {
-        log.debug("redisson-client init...");
-        Config config = new Config();
-        configGlobal(config);
-        switch (redisRedissonProperty.getType()) {
-            case SINGLE:
-                configSingle(config);
-                break;
-            case CLUSTER:
-                configCluster(config);
-                break;
-            case MASTER_SLAVE:
-                configMasterSlave(config);
-                break;
-            case SENTINEL:
-                configSentinel(config);
-                break;
-            case REPLICATED:
-                configReplicated(config);
-                break;
-            default:
-                throw new IllegalArgumentException("illegal redisson type: " + redisRedissonProperty.getType());
+        try {
+            log.debug("redisson-client init...");
+            Config config = new Config();
+            configGlobal(config);
+            switch (redisRedissonProperty.getType()) {
+                case SINGLE:
+                    configSingle(config);
+                    break;
+                case CLUSTER:
+                    configCluster(config);
+                    break;
+                case MASTER_SLAVE:
+                    configMasterSlave(config);
+                    break;
+                case SENTINEL:
+                    configSentinel(config);
+                    break;
+                case REPLICATED:
+                    configReplicated(config);
+                    break;
+                default:
+                    throw new IllegalArgumentException("illegal redisson type: " + redisRedissonProperty.getType());
+            }
+            // 用户自定义配置，拥有最高优先级
+            redissonCustomizers.forEach(customizer -> customizer.customize(config));
+            return Redisson.create(config);
+        } catch (Exception e) {
+            // 根据业务特点，认为 redis 应该是若依赖的，因此启动的时候，如果 bean redisClient 创建失败，程序也应该正常启动（这里添加异常捕获）
+            log.error("redisson create error message:{}.", e.getMessage(), e);
+            return null;
         }
-        // 用户自定义配置，拥有最高优先级
-        redissonCustomizers.forEach(customizer -> customizer.customize(config));
-        return Redisson.create(config);
     }
 
     private void configGlobal(Config config) {
