@@ -8,8 +8,8 @@ module.exports = {
   theme: 'vdoing', // 使用依赖包主题
   // theme: require.resolve('../../vdoing'), // 使用本地主题
 
-  title: "vuepress-theme-vdoing",
-  description: '一个基于VuePress的 知识管理&博客 主题',
+  title: "Wow4j",
+  description: '一个神奇的 Java 网站',
   // base: '/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
   head: [ // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
     ['link', { rel: 'icon', href: '/img/favicon.ico' }], //favicons，资源放在public文件夹
