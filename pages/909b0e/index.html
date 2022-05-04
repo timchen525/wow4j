@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>byte buddy 实现链路上所有方法耗时打印 | Wow4j</title>
+    <meta name="generator" content="VuePress 1.9.2">
+    <link rel="icon" href="/wow4j/img/favicon.ico">
+    <script src="https://cdn.wwads.cn/js/makemoney.js" type="text/javascript"></script>
+    <meta name="description" content="一个神奇的 Java 网站">
+    <meta name="keywords" content="vuepress,theme,blog,vdoing">
+    <meta name="theme-color" content="#11a8cd">
+    <meta name="wwads-cn-verify" content="6c4b761a28b734fe93831e3fb400ce87">
+    
+    <link rel="preload" href="/wow4j/assets/css/0.styles.54260fd7.css" as="style"><link rel="preload" href="/wow4j/assets/js/app.3b62bec8.js" as="script"><link rel="preload" href="/wow4j/assets/js/2.41b6d3df.js" as="script"><link rel="preload" href="/wow4j/assets/js/22.e3734f17.js" as="script"><link rel="prefetch" href="/wow4j/assets/js/10.b4160716.js"><link rel="prefetch" href="/wow4j/assets/js/11.894338e1.js"><link rel="prefetch" href="/wow4j/assets/js/12.0ed3a53f.js"><link rel="prefetch" href="/wow4j/assets/js/13.30e79cc0.js"><link rel="prefetch" href="/wow4j/assets/js/14.e02365be.js"><link rel="prefetch" href="/wow4j/assets/js/15.cfb0d907.js"><link rel="prefetch" href="/wow4j/assets/js/16.2721e1d8.js"><link rel="prefetch" href="/wow4j/assets/js/17.77476a46.js"><link rel="prefetch" href="/wow4j/assets/js/18.949b342e.js"><link rel="prefetch" href="/wow4j/assets/js/19.ebdd439b.js"><link rel="prefetch" href="/wow4j/assets/js/20.40083bef.js"><link rel="prefetch" href="/wow4j/assets/js/21.0e8f2034.js"><link rel="prefetch" href="/wow4j/assets/js/23.ab7da197.js"><link rel="prefetch" href="/wow4j/assets/js/24.bf8d9adb.js"><link rel="prefetch" href="/wow4j/assets/js/25.6d3cae4f.js"><link rel="prefetch" href="/wow4j/assets/js/26.302a3cd4.js"><link rel="prefetch" href="/wow4j/assets/js/27.9c905a67.js"><link rel="prefetch" href="/wow4j/assets/js/28.dad3fc2d.js"><link rel="prefetch" href="/wow4j/assets/js/29.114a314e.js"><link rel="prefetch" href="/wow4j/assets/js/3.87ae8c32.js"><link rel="prefetch" href="/wow4j/assets/js/30.834a5871.js"><link rel="prefetch" href="/wow4j/assets/js/31.bf82f3e8.js"><link rel="prefetch" href="/wow4j/assets/js/32.a613c60d.js"><link rel="prefetch" href="/wow4j/assets/js/33.d030c2cc.js"><link rel="prefetch" href="/wow4j/assets/js/34.d632850c.js"><link rel="prefetch" href="/wow4j/assets/js/35.fdceaa23.js"><link rel="prefetch" href="/wow4j/assets/js/36.9a63e1dd.js"><link rel="prefetch" href="/wow4j/assets/js/37.8394fee3.js"><link rel="prefetch" href="/wow4j/assets/js/38.ef307fec.js"><link rel="prefetch" href="/wow4j/assets/js/39.afc64721.js"><link rel="prefetch" href="/wow4j/assets/js/4.0bdecb56.js"><link rel="prefetch" href="/wow4j/assets/js/40.2bfbd07f.js"><link rel="prefetch" href="/wow4j/assets/js/41.75289f6e.js"><link rel="prefetch" href="/wow4j/assets/js/42.93161802.js"><link rel="prefetch" href="/wow4j/assets/js/5.ba12f7e0.js"><link rel="prefetch" href="/wow4j/assets/js/6.1726f041.js"><link rel="prefetch" href="/wow4j/assets/js/7.75c89873.js"><link rel="prefetch" href="/wow4j/assets/js/8.0990d846.js"><link rel="prefetch" href="/wow4j/assets/js/9.9a104c1d.js">
+    <link rel="stylesheet" href="/wow4j/assets/css/0.styles.54260fd7.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wow4j/" class="home-link router-link-active"><img src="https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200409124835.png" alt="Wow4j" class="logo"> <span class="site-name can-hide">Wow4j</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/wow4j/pages/a2f161/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wow4j/pages/52d5c3/" class="nav-link">主题初衷与诞生</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/a2f161/" class="nav-link">介绍</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/793dcb/" class="nav-link">快速上手</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/2f674a/" class="nav-link">目录结构</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/33d574/" class="nav-link">核心配置和约定</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/088c16/" class="nav-link">自动生成front matter</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/d0d7eb/" class="nav-link">Markdown 容器</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/197691/" class="nav-link">Markdown 中使用组件</a></li><li class="dropdown-item"><h4>相关文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wow4j/pages/dd027d/" class="nav-link">如何让你的笔记更有表现力</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/2b8e22/" class="nav-link">批量操作front matter工具</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/0fc1d2/" class="nav-link">部署</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/9ae0bd/" class="nav-link">关于写文章和H1标题</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/26997d/" class="nav-link">关于博客搭建与管理</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/c5a54d/" class="nav-link">在线编辑和新增文章的方法</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><a href="/wow4j/pages/a20ce8/" class="link-title">配置</a> <span class="title" style="display:none;">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wow4j/pages/a20ce8/" class="nav-link">主题配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/f14bdb/" class="nav-link">首页配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/3216b0/" class="nav-link">front matter配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/54651a/" class="nav-link">目录页配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/1cc523/" class="nav-link">添加摘要</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/f51918/" class="nav-link">修改主题颜色和样式</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/ce175c/" class="nav-link">评论栏</a></li></ul></div></div><div class="nav-item"><a href="/wow4j/pages/db78e2/" class="nav-link">资源</a></div><div class="nav-item"><a href="/wow4j/pages/5d571c/" class="nav-link">案例</a></div><div class="nav-item"><a href="/wow4j/pages/9cc27d/" class="nav-link">问答</a></div><div class="nav-item"><a href="/wow4j/pages/1b12ed/" class="nav-link">💖支持</a></div> <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/wow4j/pages/a2f161/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wow4j/pages/52d5c3/" class="nav-link">主题初衷与诞生</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/a2f161/" class="nav-link">介绍</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/793dcb/" class="nav-link">快速上手</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/2f674a/" class="nav-link">目录结构</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/33d574/" class="nav-link">核心配置和约定</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/088c16/" class="nav-link">自动生成front matter</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/d0d7eb/" class="nav-link">Markdown 容器</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/197691/" class="nav-link">Markdown 中使用组件</a></li><li class="dropdown-item"><h4>相关文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wow4j/pages/dd027d/" class="nav-link">如何让你的笔记更有表现力</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/2b8e22/" class="nav-link">批量操作front matter工具</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/0fc1d2/" class="nav-link">部署</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/9ae0bd/" class="nav-link">关于写文章和H1标题</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/26997d/" class="nav-link">关于博客搭建与管理</a></li><li class="dropdown-subitem"><a href="/wow4j/pages/c5a54d/" class="nav-link">在线编辑和新增文章的方法</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><a href="/wow4j/pages/a20ce8/" class="link-title">配置</a> <span class="title" style="display:none;">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wow4j/pages/a20ce8/" class="nav-link">主题配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/f14bdb/" class="nav-link">首页配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/3216b0/" class="nav-link">front matter配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/54651a/" class="nav-link">目录页配置</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/1cc523/" class="nav-link">添加摘要</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/f51918/" class="nav-link">修改主题颜色和样式</a></li><li class="dropdown-item"><!----> <a href="/wow4j/pages/ce175c/" class="nav-link">评论栏</a></li></ul></div></div><div class="nav-item"><a href="/wow4j/pages/db78e2/" class="nav-link">资源</a></div><div class="nav-item"><a href="/wow4j/pages/5d571c/" class="nav-link">案例</a></div><div class="nav-item"><a href="/wow4j/pages/9cc27d/" class="nav-link">问答</a></div><div class="nav-item"><a href="/wow4j/pages/1b12ed/" class="nav-link">💖支持</a></div> <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/52d5c3/" class="sidebar-link">主题初衷与诞生</a></li><li><a href="/wow4j/pages/a2f161/" class="sidebar-link">介绍</a></li><li><a href="/wow4j/pages/793dcb/" class="sidebar-link">快速上手</a></li><li><a href="/wow4j/pages/2f674a/" class="sidebar-link">目录结构</a></li><li><a href="/wow4j/pages/33d574/" class="sidebar-link">构建结构化站点的核心配置和约定</a></li><li><a href="/wow4j/pages/088c16/" class="sidebar-link">自动生成front matter</a></li><li><a href="/wow4j/pages/d0d7eb/" class="sidebar-link">Markdown 容器</a></li><li><a href="/wow4j/pages/197691/" class="sidebar-link">Markdown 中使用组件</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>相关文章</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/dd027d/" class="sidebar-link">如何让你的笔记更有表现力</a></li><li><a href="/wow4j/pages/2b8e22/" class="sidebar-link">批量操作front matter工具</a></li><li><a href="/wow4j/pages/0fc1d2/" class="sidebar-link">部署</a></li><li><a href="/wow4j/pages/9ae0bd/" class="sidebar-link">关于写文章和一级标题</a></li><li><a href="/wow4j/pages/26997d/" class="sidebar-link">关于博客搭建与管理</a></li><li><a href="/wow4j/pages/c5a54d/" class="sidebar-link">在线编辑和新增文章的方法</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>技术文章</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/9233df/" class="sidebar-link">RESTful 使用教程</a></li><li><a href="/wow4j/pages/99c85b/" class="sidebar-link">MySQL  建表规范（补充版）</a></li><li><a href="/wow4j/pages/909b0e/" aria-current="page" class="active sidebar-link">byte buddy 实现链路上所有方法耗时打印</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_1-需求背景" class="sidebar-link">1. 需求背景</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_2-实现思路" class="sidebar-link">2. 实现思路</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_3-基于-bytebuddy-实现" class="sidebar-link">3. 基于 bytebuddy 实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_3-1-maven-项目java-agent-demo" class="sidebar-link">3.1  maven 项目java-agent-demo</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_3-2-项目-java-agent-user-来进行验证" class="sidebar-link">3.2  项目  java-agent-user 来进行验证</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_3-3-在工程-java-agent-user-中执行命令" class="sidebar-link">3.3  在工程 java-agent-user 中执行命令</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_3-4-执行效果" class="sidebar-link">3.4 执行效果</a></li></ul></li><li class="sidebar-sub-header"><a href="/wow4j/pages/909b0e/#_4-总结" class="sidebar-link">4. 总结</a></li></ul></li><li><a href="/wow4j/pages/7c75c6/" class="sidebar-link">用户画像</a></li><li><a href="/wow4j/pages/87518c/" class="sidebar-link">业务线程池不丢 traceId 的方法</a></li><li><a href="/wow4j/pages/2b0da9/" class="sidebar-link">如何一键生成项目树形结构</a></li><li><a href="/wow4j/pages/48a72b/" class="sidebar-link">日志打印最佳实践</a></li><li><a href="/wow4j/pages/4668e5/" class="sidebar-link">服务端 常见线上事故总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>运维相关</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/227545/" class="sidebar-link">docker 命令</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>skywalking</span> <!----></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>资料收集</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/32f565/" class="sidebar-link">优秀 pdf 书籍</a></li></ul></section></li><li><a href="/wow4j/pages/990056/" class="sidebar-link">临时笔记</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/wow4j/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><span data-v-0c557b5e>指南</span></li><li data-v-0c557b5e><span data-v-0c557b5e>技术文章</span></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/xugaoyi" target="_blank" title="作者" class="beLink" data-v-0c557b5e>Evan Xu</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2022-03-26</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">byte buddy 实现链路上所有方法耗时打印<!----></h1>  <div class="theme-vdoing-content content__default"><h2 id="_1-需求背景"><a href="#_1-需求背景" class="header-anchor">#</a> 1. 需求背景</h2> <p>业务上需要实现对指定包路径下，所有方法的请求耗时进行打印，要求尽量不要与核心业务耦合。</p> <h2 id="_2-实现思路"><a href="#_2-实现思路" class="header-anchor">#</a> 2. 实现思路</h2> <p>如果想实现对业务尽量无感，且打印每个方法的耗时，先排除掉：在业务中直接进行日志打印耗时。主要实现思路有：</p> <ol><li>利用 AOP 切面来实现</li> <li>利用字节码 agent 来实现</li></ol> <p>由于网络上对于使用 AOP 切面来实现该功能的例子比较多，这里重点介绍下如何利用 字节码 agent 来实现，具体的字节码相关的，用的是 bytebuddy 来实现。</p> <h2 id="_3-基于-bytebuddy-实现"><a href="#_3-基于-bytebuddy-实现" class="header-anchor">#</a> 3. 基于 bytebuddy 实现</h2> <p>基于 bytebuddy 实现的步骤：</p> <h3 id="_3-1-maven-项目java-agent-demo"><a href="#_3-1-maven-项目java-agent-demo" class="header-anchor">#</a> 3.1  maven 项目<code>java-agent-demo</code></h3> <ol><li>项目的 <code>pom.xml</code> 的文件如下：</li></ol> <div class="language- extra-class"><pre class="language-text"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+
+    &lt;groupId&gt;com.tim&lt;/groupId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;artifactId&gt;java-agent-demo&lt;/artifactId&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;net.bytebuddy&lt;/groupId&gt;
+            &lt;artifactId&gt;byte-buddy&lt;/artifactId&gt;
+            &lt;version&gt;1.9.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;net.bytebuddy&lt;/groupId&gt;
+            &lt;artifactId&gt;byte-buddy-agent&lt;/artifactId&gt;
+            &lt;version&gt;1.9.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;appendAssemblyId&gt;false&lt;/appendAssemblyId&gt;
+                    &lt;descriptorRefs&gt;
+                        &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+                    &lt;/descriptorRefs&gt;
+                    &lt;archive&gt;
+                        &lt;!-- 自动添加 META-INF/MAINFEST.MF --&gt;
+                        &lt;manifest&gt;
+                            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                        &lt;/manifest&gt;
+                        &lt;manifestEntries&gt;
+                            &lt;Premain-Class&gt;PreMainAgent&lt;/Premain-Class&gt;
+                            &lt;Agent-Class&gt;PreMainAgent&lt;/Agent-Class&gt;
+                            &lt;Can-Redefine-Classes&gt;true&lt;/Can-Redefine-Classes&gt;
+                            &lt;Can-Retransform-Classes&gt;true&lt;/Can-Retransform-Classes&gt;
+                        &lt;/manifestEntries&gt;
+                    &lt;/archive&gt;
+                &lt;/configuration&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;make-assembly&lt;/id&gt;
+                        &lt;phase&gt;package&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;single&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+
+&lt;/project&gt;
+</code></pre></div><ol start="2"><li>新增一个类 <code>PreMainAgent.java</code>，里面添加静态方法 <code>premain</code></li></ol> <div class="language- extra-class"><pre class="language-text"><code>import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.description.method.MethodDescription;
+import net.bytebuddy.description.type.TypeDescription;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.implementation.MethodDelegation;
+import net.bytebuddy.matcher.ElementMatchers;
+import net.bytebuddy.utility.JavaModule;
+
+import java.lang.instrument.Instrumentation;
+
+public class PreMainAgent {
+
+    // 定义要拦截的包路径前缀
+    private static final String PACKAGE_NAME_PREFIX = &quot;com.agent&quot;;
+
+    public static void premain(String agentparam, Instrumentation inst) {
+        AgentBuilder.Transformer transformer = new AgentBuilder.Transformer(){
+            public DynamicType.Builder&lt;?&gt; transform(DynamicType.Builder&lt;?&gt; builder, TypeDescription typeDescription, ClassLoader classLoader, JavaModule javaModule) {
+                // method 指定哪些方法需要被拦截，ElementMatchers.any 指定了所有的方法
+                // 声明 intercept 拦截器
+                return builder.method(ElementMatchers.&lt;MethodDescription&gt;any())
+                        .intercept(MethodDelegation.to(MyInterceptor.class));
+            }
+        };
+
+        // type 指定了 agent 拦截的包名，以com.agent 作为前缀
+        // 指定了 transformer
+        // 将配置安装到 Instrumentation
+        new AgentBuilder.Default().type(ElementMatchers.&lt;TypeDescription&gt;nameStartsWith(&quot;com.agent&quot;)).transform(transformer).installOn(inst);
+    }
+}
+</code></pre></div><ol start="3"><li>新增一个拦截类 <code>MyInterceptor.java</code></li></ol> <div class="language- extra-class"><pre class="language-text"><code>import net.bytebuddy.implementation.bind.annotation.Origin;
+import net.bytebuddy.implementation.bind.annotation.RuntimeType;
+import net.bytebuddy.implementation.bind.annotation.SuperCall;
+
+import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
+
+public class MyInterceptor {
+
+    @RuntimeType
+    public static Object intercept(@Origin Method method,
+                                   @SuperCall Callable&lt;?&gt; callable) throws Exception {
+        Long start = System.currentTimeMillis();
+        try {
+            return callable.call();
+        } finally {
+            System.out.println(method.getName() + &quot;:&quot; + (System.currentTimeMillis() - start) + &quot;ms&quot;);
+        }
+    }
+}
+</code></pre></div><ol start="4"><li><p>执行 <code>mvn clean</code>、<code>mvn compile</code>、<code>mvn deploy</code> 或者通过 idea中的maven ui界面进行操作</p> <p>在  <strong>target</strong> 下生成一个 <code>java-agent-demo-1.0.0-SNAPSHOT.jar</code></p></li></ol> <h3 id="_3-2-项目-java-agent-user-来进行验证"><a href="#_3-2-项目-java-agent-user-来进行验证" class="header-anchor">#</a> 3.2  项目  java-agent-user 来进行验证</h3> <ol><li>新建一个普通的 java 项目 <code>java-agent-user</code></li> <li>在包路径 <strong>com.agent</strong> 下新建一个Main类下，代码如下：</li></ol> <div class="language- extra-class"><pre class="language-text"><code>package com.agent;
+
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println(&quot;main 方法执行&quot;);
+        Thread.sleep(1000L);
+        hello();
+        Thread.sleep(10L);
+        hello2();
+    }
+
+    public static void hello() throws InterruptedException {
+        Thread.sleep(50L);
+        System.out.println(&quot;23&quot;);
+    }
+
+    public static void hello2() throws InterruptedException {
+        Thread.sleep(10L);
+        System.out.println(&quot;33&quot;);
+    }
+}
+
+</code></pre></div><h3 id="_3-3-在工程-java-agent-user-中执行命令"><a href="#_3-3-在工程-java-agent-user-中执行命令" class="header-anchor">#</a> 3.3  在工程 java-agent-user 中执行命令</h3> <div class="language- extra-class"><pre class="language-text"><code>java -javaagent:/${路径}/java-agent-demo-1.0.0-SNAPSHOT.jar -jar java-agent-user.jar
+</code></pre></div><p>或者直接在idea的<strong>VM options</strong>中执行如下命令：</p> <div class="language- extra-class"><pre class="language-text"><code>-javaagent:/%{路径}/java-agent-demo-1.0.0-SNAPSHOT.jar
+</code></pre></div><p>说明：${路径} 请换成实际打成 agent 的包路径。</p> <h3 id="_3-4-执行效果"><a href="#_3-4-执行效果" class="header-anchor">#</a> 3.4 执行效果</h3> <div class="language- extra-class"><pre class="language-text"><code>main 方法执行
+23
+hello:52ms
+33
+hello2:12ms
+main:1078ms
+</code></pre></div><h2 id="_4-总结"><a href="#_4-总结" class="header-anchor">#</a> 4. 总结</h2> <p>利用 bytebuddy 可以轻松的实现字节码的插砖技术，实现业务解耦打印每个方法的耗时。</p></div></div> <div class="page-slot page-slot-bottom">
+  <div class="wwads-cn wwads-horizontal pageB" data-id="136" style="width:100%;max-height:80px;min-height:auto;"></div>
+  <style>
+    .pageB img{width:80px!important;}
+    .wwads-horizontal .wwads-text, .wwads-content .wwads-text{line-height:1;}
+  </style>
+  </div> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/03/26, 15:59:32</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/wow4j/pages/99c85b/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">MySQL  建表规范（补充版）</div></a> <a href="/wow4j/pages/7c75c6/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">用户画像</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/wow4j/pages/99c85b/" class="prev">MySQL  建表规范（补充版）</a></span> <span class="next"><a href="/wow4j/pages/7c75c6/">用户画像</a>→
+      </span></p></div></div></div> <!----></main></div> <div class="footer"><div class="icons"><a href="mailto:894072666@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/xugaoyi" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2019-2022
+    <span>Evan Xu | MIT License</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div>
+    <div class="wwads-cn wwads-vertical windowRB" data-id="136" style="max-width:160px;
+    min-width: auto;min-height:auto;"></div>
+    <style>
+      .windowRB{ padding: 0;}
+      .windowRB .wwads-img{margin-top: 10px;}
+      .windowRB .wwads-content{margin: 0 10px 10px 10px;}
+      .custom-html-window-rb .close-but{
+        display: none;
+      }
+    </style>
+  </div></div></div></div><div class="global-ui"></div></div>
+    <script src="/wow4j/assets/js/app.3b62bec8.js" defer></script><script src="/wow4j/assets/js/2.41b6d3df.js" defer></script><script src="/wow4j/assets/js/22.e3734f17.js" defer></script>
+  </body>
+</html>
