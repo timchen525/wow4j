@@ -41,31 +41,6 @@ postList: none
   <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank"><img src='https://img.shields.io/github/forks/xugaoyi/vuepress-theme-vdoing' alt='GitHub forks' class="no-zoom"></a>
 </p>
 
-## 🎖特别用户
-::: cardList 2
-```yaml
-- name: OpenHarmony
-  desc: 🚀开放原子开源基金会
-  link: https://www.openharmony.cn/
-  bgColor: '#f1f1f1'
-  textColor: '#2A3344'
-- name: Deepin 社区
-  desc: 🚀Deepin 应用开发技术分享、DTK开发经验等
-  link: https://docs.deepin.org
-  bgColor: '#f1f1f1'
-  textColor: '#2A3344'
-- name: VForm官网
-  desc: 低代码表单优选方案，拖拽式设计，一键生成源码
-  link: http://www.vform666.com
-  bgColor: '#f1f1f1'
-  textColor: '#2A3344'
-- name: Mybatis-Plus官网
-  desc: 🚀为简化开发而生
-  link: https://baomidou.com/
-  bgColor: '#f1f1f1'
-  textColor: '#2A3344'
-```
-:::
 
 <br/>
 
