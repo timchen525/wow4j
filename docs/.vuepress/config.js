@@ -123,7 +123,20 @@ module.exports = {
     //   excludeClassName: 'theme-vdoing-content' // 要排除元素的class, 默认空''
     // }],
 
-    ['fulltext-search'], // 全文搜索
+    [
+      'vuepress-plugin-comment',
+      {
+        choosen: 'valine',
+        options: {
+          el: '#valine-vuepress-comment',
+          appId: 'ldw288he0deIwTSWVbOD3FSr-gzGzoHsz',
+          appKey: 'TwhUxVNl2exbpHjdE10pTeSn',
+          path: '<%- frontmatter.commentid || frontmatter.permalink %>'
+        }
+      }
+    ],
+
+      ['fulltext-search'], // 全文搜索
 
     // ['thirdparty-search', { // 可以添加第三方搜索链接的搜索框（原官方搜索框的参数仍可用）
     //   thirdparty: [ // 可选，默认 []
