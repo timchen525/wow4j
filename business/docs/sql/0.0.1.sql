@@ -8,9 +8,9 @@ CREATE TABLE user
     `version` INT UNSIGNED DEFAULT 1 COMMENT '版本号',
     `deleted` TINYINT unsigned DEFAULT 0 COMMENT '逻辑删除 0=>未删除  1=>删除',
     `user_id_update` CHAR(36) COMMENT '更新人 ID',
-    `time_update` BIGINT UNSIGNED DEFAULT CURRENT_TIMESTAMP() COMMENT '更新时间戳',
+    `time_update` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间戳',
     `user_id_create` CHAR(36) COMMENT '创建人 ID',
-    `time_create` bigint UNSIGNED DEFAULT CURRENT_TIMESTAMP() COMMENT '创建时间戳',
+    `time_create` bigint UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间戳',
     PRIMARY KEY (`id`)
 );
 INSERT INTO user(`id`, `name`, `age`, `email`) VALUES
