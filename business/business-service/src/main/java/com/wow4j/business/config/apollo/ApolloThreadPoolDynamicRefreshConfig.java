@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * 线程池动态修改
+ */
 @Component
 @Slf4j
 public class ApolloThreadPoolDynamicRefreshConfig implements BeanPostProcessor {

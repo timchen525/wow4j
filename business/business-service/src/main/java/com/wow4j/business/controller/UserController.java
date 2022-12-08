@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "根据 ID 查询用户信息", notes = "根据 ID 查询岗位 @author wow")
-    @GetMapping("/Wow4j/user/{userId}")
+    @GetMapping("/wow4j/user/{userId}")
     public Response<UserVO> queryById(@PathVariable Long userId) {
         UserDTO userDTO = userService.queryUserById(userId);
         UserVO userVO = UserVO.fromUserDTO(userDTO);
