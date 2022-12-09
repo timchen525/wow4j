@@ -26,7 +26,7 @@ public class ApolloConfigChangeLogInfoConfig {
                 PropertyChangeType changeType = configChange.getChangeType();
 
                 log.info("apolloConfigChangeListener namespace:{}, propertyName:{}, changeType:{}, oldValue:{} to newValue:{}.",
-                        namespace, propertyName, oldValue, newValue, changeType.toString());
+                        namespace, propertyName,  changeType.toString(), oldValue, newValue);
             }
         } catch (RuntimeException e) {
             log.warn("apolloConfigChangeListener warn:{}.", e.getMessage(), e);

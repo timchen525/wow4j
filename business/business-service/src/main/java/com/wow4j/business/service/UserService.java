@@ -23,7 +23,7 @@ public class UserService {
     /**
      * 根据用户id查询用户信息
      */
-    @Cacheable(value = "user", key = "test", condition = "not null")
+//    @Cacheable(value = "user", key = "test", condition = "not null")
     public UserDTO queryUserById(Long id) {
         UserEntity userEntity = userDao.selectById(id);
         UserDTO userDTO = UserDTO.fromUserEntity(userEntity);
