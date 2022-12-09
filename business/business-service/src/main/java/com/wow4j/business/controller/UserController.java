@@ -30,4 +30,9 @@ public class UserController {
         UserVO userVO = UserVO.fromUserDTO(userDTO);
         return Response.success(userVO);
     }
+
+    @GetMapping("/wow4j/user/test")
+    public String test() {
+        return "success";
+    }
 }
