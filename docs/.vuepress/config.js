@@ -42,10 +42,7 @@ module.exports = {
         text: '大数据开发', link: '/pages/aa09ae/'
       },
       {
-        text: '产品经理', link: '/pages/b9db3b/'
-      },
-      {
-        text: 'UI 交互', link: '/pages/5b4bcd/'
+        text: '产品&UI交互', link: '/pages/5b4bcd/'
       },
       {
         text: '团队管理', link: '/pages/7ba30c/'
@@ -71,7 +68,7 @@ module.exports = {
     // editLinkText: '编辑',
 
     // 以下配置是Vdoing主题改动的和新增的配置
-    sidebar: { mode: 'structuring', collapsable: true }, // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
+    sidebar: { mode: 'structuring', collapsable: false }, // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
 
     // sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     updateBar: { // 最近更新栏
