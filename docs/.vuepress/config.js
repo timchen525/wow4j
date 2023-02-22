@@ -24,7 +24,7 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       {
-        text: '个人简介', link: '/pages/f380dd/'
+        text: '个人使用说明书', link: '/pages/f380dd/'
       },
       {
         text: '后端开发', link: '/pages/19aee3/'
@@ -51,6 +51,9 @@ module.exports = {
         text: '软技能', link: '/pages/92a016/'
       },
       {
+        text: '他山之石', link: '/pages/a6fe2f/'
+      },
+      {
         text: '开源产品', link: '/pages/366b2d/'
       },
       {
@@ -68,7 +71,7 @@ module.exports = {
     // editLinkText: '编辑',
 
     // 以下配置是Vdoing主题改动的和新增的配置
-    sidebar: { mode: 'structuring', collapsable: false }, // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
+    sidebar: { mode: 'structuring', collapsable: true }, // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
 
     // sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     updateBar: { // 最近更新栏
