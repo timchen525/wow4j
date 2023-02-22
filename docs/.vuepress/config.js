@@ -51,7 +51,7 @@ module.exports = {
         text: '软技能', link: '/pages/92a016/'
       },
       {
-        text: '他山之石', link: '/pages/a6fe2f/'
+        text: '他山之石', link: '/pages/df3516/'
       },
       {
         text: '开源产品', link: '/pages/366b2d/'
