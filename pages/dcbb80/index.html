@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>关于搜索建议词的分析以及相应的优化方案 | Wow4j</title>
+    <meta name="generator" content="VuePress 1.9.2">
+    <link rel="icon" href="/wow4j/img/favicon.ico">
+    <script src="https://cdn.wwads.cn/js/makemoney.js" type="text/javascript"></script>
+    <meta name="description" content="一个神奇的个人网站">
+    <meta name="keywords" content="vuepress,theme,blog,vdoing">
+    <meta name="theme-color" content="#11a8cd">
+    <meta name="wwads-cn-verify" content="6c4b761a28b734fe93831e3fb400ce87">
+    
+    <link rel="preload" href="/wow4j/assets/css/0.styles.2be8a3b8.css" as="style"><link rel="preload" href="/wow4j/assets/js/app.9c6a4848.js" as="script"><link rel="preload" href="/wow4j/assets/js/2.290edd30.js" as="script"><link rel="preload" href="/wow4j/assets/js/43.32f5429c.js" as="script"><link rel="prefetch" href="/wow4j/assets/js/10.cc49bee5.js"><link rel="prefetch" href="/wow4j/assets/js/100.d0d750a5.js"><link rel="prefetch" href="/wow4j/assets/js/101.c886cab2.js"><link rel="prefetch" href="/wow4j/assets/js/102.19f8414a.js"><link rel="prefetch" href="/wow4j/assets/js/103.77106e4e.js"><link rel="prefetch" href="/wow4j/assets/js/104.1c378d9d.js"><link rel="prefetch" href="/wow4j/assets/js/105.ea2775b6.js"><link rel="prefetch" href="/wow4j/assets/js/106.8cd360a9.js"><link rel="prefetch" href="/wow4j/assets/js/107.723f3b88.js"><link rel="prefetch" href="/wow4j/assets/js/108.402b1319.js"><link rel="prefetch" href="/wow4j/assets/js/109.b484419b.js"><link rel="prefetch" href="/wow4j/assets/js/11.62833ef0.js"><link rel="prefetch" href="/wow4j/assets/js/110.40c42c91.js"><link rel="prefetch" href="/wow4j/assets/js/111.9d56f07a.js"><link rel="prefetch" href="/wow4j/assets/js/112.0481f6bd.js"><link rel="prefetch" href="/wow4j/assets/js/113.8566a1ff.js"><link rel="prefetch" href="/wow4j/assets/js/114.7b735cde.js"><link rel="prefetch" href="/wow4j/assets/js/115.664878dd.js"><link rel="prefetch" href="/wow4j/assets/js/116.b377ad9f.js"><link rel="prefetch" href="/wow4j/assets/js/117.a88ec584.js"><link rel="prefetch" href="/wow4j/assets/js/118.fe3f20bc.js"><link rel="prefetch" href="/wow4j/assets/js/119.3e9fe0d2.js"><link rel="prefetch" href="/wow4j/assets/js/12.5f6f9546.js"><link rel="prefetch" href="/wow4j/assets/js/120.56830621.js"><link rel="prefetch" href="/wow4j/assets/js/121.29e5af93.js"><link rel="prefetch" href="/wow4j/assets/js/122.0ce81628.js"><link rel="prefetch" href="/wow4j/assets/js/123.be47c083.js"><link rel="prefetch" href="/wow4j/assets/js/124.838c4ccc.js"><link rel="prefetch" href="/wow4j/assets/js/125.864730ae.js"><link rel="prefetch" href="/wow4j/assets/js/126.77dfdbc4.js"><link rel="prefetch" href="/wow4j/assets/js/127.c6139497.js"><link rel="prefetch" href="/wow4j/assets/js/128.0f244320.js"><link rel="prefetch" href="/wow4j/assets/js/129.bd5a745a.js"><link rel="prefetch" href="/wow4j/assets/js/13.52cbcaa6.js"><link rel="prefetch" href="/wow4j/assets/js/130.fd400d64.js"><link rel="prefetch" href="/wow4j/assets/js/131.017cf0e1.js"><link rel="prefetch" href="/wow4j/assets/js/132.0700c2f1.js"><link rel="prefetch" href="/wow4j/assets/js/133.f5f2c958.js"><link rel="prefetch" href="/wow4j/assets/js/134.3d973545.js"><link rel="prefetch" href="/wow4j/assets/js/135.d1446f2c.js"><link rel="prefetch" href="/wow4j/assets/js/136.bd089225.js"><link rel="prefetch" href="/wow4j/assets/js/137.8d60eb0b.js"><link rel="prefetch" href="/wow4j/assets/js/138.8ca213e2.js"><link rel="prefetch" href="/wow4j/assets/js/139.c2229689.js"><link rel="prefetch" href="/wow4j/assets/js/14.9598724a.js"><link rel="prefetch" href="/wow4j/assets/js/140.e3136a19.js"><link rel="prefetch" href="/wow4j/assets/js/141.f23ba9ac.js"><link rel="prefetch" href="/wow4j/assets/js/142.d11ce65a.js"><link rel="prefetch" href="/wow4j/assets/js/143.57a58889.js"><link rel="prefetch" href="/wow4j/assets/js/144.098dfd5b.js"><link rel="prefetch" href="/wow4j/assets/js/145.27e182e2.js"><link rel="prefetch" href="/wow4j/assets/js/146.7690d2b5.js"><link rel="prefetch" href="/wow4j/assets/js/147.bcc94f51.js"><link rel="prefetch" href="/wow4j/assets/js/148.ee9a759b.js"><link rel="prefetch" href="/wow4j/assets/js/149.46774ec2.js"><link rel="prefetch" href="/wow4j/assets/js/15.707c3321.js"><link rel="prefetch" href="/wow4j/assets/js/150.7cc49407.js"><link rel="prefetch" href="/wow4j/assets/js/151.75f299ba.js"><link rel="prefetch" href="/wow4j/assets/js/152.8f4725a5.js"><link rel="prefetch" href="/wow4j/assets/js/153.bc2293ac.js"><link rel="prefetch" href="/wow4j/assets/js/154.a139674e.js"><link rel="prefetch" href="/wow4j/assets/js/16.d1310490.js"><link rel="prefetch" href="/wow4j/assets/js/17.c7e6087b.js"><link rel="prefetch" href="/wow4j/assets/js/18.d6e79f99.js"><link rel="prefetch" href="/wow4j/assets/js/19.f17afc4a.js"><link rel="prefetch" href="/wow4j/assets/js/20.a637b76c.js"><link rel="prefetch" href="/wow4j/assets/js/21.6851dbb3.js"><link rel="prefetch" href="/wow4j/assets/js/22.72f87f18.js"><link rel="prefetch" href="/wow4j/assets/js/23.7cd46cec.js"><link rel="prefetch" href="/wow4j/assets/js/24.665a7da0.js"><link rel="prefetch" href="/wow4j/assets/js/25.1cce4c66.js"><link rel="prefetch" href="/wow4j/assets/js/26.7e23f5c7.js"><link rel="prefetch" href="/wow4j/assets/js/27.3746869d.js"><link rel="prefetch" href="/wow4j/assets/js/28.baeff496.js"><link rel="prefetch" href="/wow4j/assets/js/29.f4052d4b.js"><link rel="prefetch" href="/wow4j/assets/js/3.38193b7d.js"><link rel="prefetch" href="/wow4j/assets/js/30.d84f8605.js"><link rel="prefetch" href="/wow4j/assets/js/31.792bf7ba.js"><link rel="prefetch" href="/wow4j/assets/js/32.e327ed3c.js"><link rel="prefetch" href="/wow4j/assets/js/33.4d34e13b.js"><link rel="prefetch" href="/wow4j/assets/js/34.f3c67117.js"><link rel="prefetch" href="/wow4j/assets/js/35.ebf77968.js"><link rel="prefetch" href="/wow4j/assets/js/36.76d36ea3.js"><link rel="prefetch" href="/wow4j/assets/js/37.a9305c46.js"><link rel="prefetch" href="/wow4j/assets/js/38.954c0bf8.js"><link rel="prefetch" href="/wow4j/assets/js/39.0529bd6b.js"><link rel="prefetch" href="/wow4j/assets/js/4.966a8281.js"><link rel="prefetch" href="/wow4j/assets/js/40.1ce6d418.js"><link rel="prefetch" href="/wow4j/assets/js/41.0dd0fdab.js"><link rel="prefetch" href="/wow4j/assets/js/42.4c5d7fd5.js"><link rel="prefetch" href="/wow4j/assets/js/44.af99ecf7.js"><link rel="prefetch" href="/wow4j/assets/js/45.f3f5b339.js"><link rel="prefetch" href="/wow4j/assets/js/46.d1b05cd5.js"><link rel="prefetch" href="/wow4j/assets/js/47.bad9e247.js"><link rel="prefetch" href="/wow4j/assets/js/48.fc6cfc68.js"><link rel="prefetch" href="/wow4j/assets/js/49.557e5fef.js"><link rel="prefetch" href="/wow4j/assets/js/5.0181d5e8.js"><link rel="prefetch" href="/wow4j/assets/js/50.4839f893.js"><link rel="prefetch" href="/wow4j/assets/js/51.5f3821cd.js"><link rel="prefetch" href="/wow4j/assets/js/52.90d46757.js"><link rel="prefetch" href="/wow4j/assets/js/53.fbbacabf.js"><link rel="prefetch" href="/wow4j/assets/js/54.de3636aa.js"><link rel="prefetch" href="/wow4j/assets/js/55.440a63f1.js"><link rel="prefetch" href="/wow4j/assets/js/56.e8e725aa.js"><link rel="prefetch" href="/wow4j/assets/js/57.151643fd.js"><link rel="prefetch" href="/wow4j/assets/js/58.2961ced5.js"><link rel="prefetch" href="/wow4j/assets/js/59.3599dd07.js"><link rel="prefetch" href="/wow4j/assets/js/6.483da95d.js"><link rel="prefetch" href="/wow4j/assets/js/60.9d37925e.js"><link rel="prefetch" href="/wow4j/assets/js/61.bf69f6a4.js"><link rel="prefetch" href="/wow4j/assets/js/62.676ff119.js"><link rel="prefetch" href="/wow4j/assets/js/63.bf8e3019.js"><link rel="prefetch" href="/wow4j/assets/js/64.aa7847d7.js"><link rel="prefetch" href="/wow4j/assets/js/65.aaa6efcd.js"><link rel="prefetch" href="/wow4j/assets/js/66.b0a59fd1.js"><link rel="prefetch" href="/wow4j/assets/js/67.cdb4f3b4.js"><link rel="prefetch" href="/wow4j/assets/js/68.bc5f82db.js"><link rel="prefetch" href="/wow4j/assets/js/69.e4305a92.js"><link rel="prefetch" href="/wow4j/assets/js/7.37ad2f1b.js"><link rel="prefetch" href="/wow4j/assets/js/70.d9573a2e.js"><link rel="prefetch" href="/wow4j/assets/js/71.5b99c14c.js"><link rel="prefetch" href="/wow4j/assets/js/72.b7538ef4.js"><link rel="prefetch" href="/wow4j/assets/js/73.773b5e16.js"><link rel="prefetch" href="/wow4j/assets/js/74.273d0158.js"><link rel="prefetch" href="/wow4j/assets/js/75.6f5e1a51.js"><link rel="prefetch" href="/wow4j/assets/js/76.7f42b6e5.js"><link rel="prefetch" href="/wow4j/assets/js/77.493a9b73.js"><link rel="prefetch" href="/wow4j/assets/js/78.58c79ad9.js"><link rel="prefetch" href="/wow4j/assets/js/79.8651ff93.js"><link rel="prefetch" href="/wow4j/assets/js/8.3e9d78b0.js"><link rel="prefetch" href="/wow4j/assets/js/80.06efe637.js"><link rel="prefetch" href="/wow4j/assets/js/81.13f1b905.js"><link rel="prefetch" href="/wow4j/assets/js/82.89f2eae1.js"><link rel="prefetch" href="/wow4j/assets/js/83.95bf174f.js"><link rel="prefetch" href="/wow4j/assets/js/84.7d6d07f7.js"><link rel="prefetch" href="/wow4j/assets/js/85.86ad3916.js"><link rel="prefetch" href="/wow4j/assets/js/86.7bc05860.js"><link rel="prefetch" href="/wow4j/assets/js/87.11ec1120.js"><link rel="prefetch" href="/wow4j/assets/js/88.17d641d1.js"><link rel="prefetch" href="/wow4j/assets/js/89.a896b238.js"><link rel="prefetch" href="/wow4j/assets/js/9.147b07eb.js"><link rel="prefetch" href="/wow4j/assets/js/90.6a4f9bbe.js"><link rel="prefetch" href="/wow4j/assets/js/91.f5aac00e.js"><link rel="prefetch" href="/wow4j/assets/js/92.04032d2e.js"><link rel="prefetch" href="/wow4j/assets/js/93.7f0b6b5c.js"><link rel="prefetch" href="/wow4j/assets/js/94.c659cc62.js"><link rel="prefetch" href="/wow4j/assets/js/95.97436f9a.js"><link rel="prefetch" href="/wow4j/assets/js/96.856d5f2f.js"><link rel="prefetch" href="/wow4j/assets/js/97.b2d11e35.js"><link rel="prefetch" href="/wow4j/assets/js/98.e57c9fff.js"><link rel="prefetch" href="/wow4j/assets/js/99.acf8a766.js">
+    <link rel="stylesheet" href="/wow4j/assets/css/0.styles.2be8a3b8.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wow4j/" class="home-link router-link-active"><img src="https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200409124835.png" alt="Wow4j" class="logo"> <span class="site-name can-hide">Wow4j</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><a href="/wow4j/pages/f380dd/" class="nav-link">个人使用说明书</a></div><div class="nav-item"><a href="/wow4j/pages/19aee3/" class="nav-link">后端开发</a></div><div class="nav-item"><a href="/wow4j/pages/d00ad7/" class="nav-link">前端开发</a></div><div class="nav-item"><a href="/wow4j/pages/ca725f/" class="nav-link">测试开发</a></div><div class="nav-item"><a href="/wow4j/pages/df4369/" class="nav-link">运维开发</a></div><div class="nav-item"><a href="/wow4j/pages/aa09ae/" class="nav-link">大数据开发</a></div><div class="nav-item"><a href="/wow4j/pages/5b4bcd/" class="nav-link">产品&amp;UI交互</a></div><div class="nav-item"><a href="/wow4j/pages/7ba30c/" class="nav-link">团队管理</a></div><div class="nav-item"><a href="/wow4j/pages/92a016/" class="nav-link">软技能</a></div><div class="nav-item"><a href="/wow4j/pages/df3516/" class="nav-link">他山之石</a></div><div class="nav-item"><a href="/wow4j/pages/366b2d/" class="nav-link">开源产品</a></div><div class="nav-item"><a href="/wow4j/pages/fdeb84/" class="nav-link">敬请期待</a></div> <a href="https://github.com//timchen525/wow4j" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><a href="/wow4j/pages/f380dd/" class="nav-link">个人使用说明书</a></div><div class="nav-item"><a href="/wow4j/pages/19aee3/" class="nav-link">后端开发</a></div><div class="nav-item"><a href="/wow4j/pages/d00ad7/" class="nav-link">前端开发</a></div><div class="nav-item"><a href="/wow4j/pages/ca725f/" class="nav-link">测试开发</a></div><div class="nav-item"><a href="/wow4j/pages/df4369/" class="nav-link">运维开发</a></div><div class="nav-item"><a href="/wow4j/pages/aa09ae/" class="nav-link">大数据开发</a></div><div class="nav-item"><a href="/wow4j/pages/5b4bcd/" class="nav-link">产品&amp;UI交互</a></div><div class="nav-item"><a href="/wow4j/pages/7ba30c/" class="nav-link">团队管理</a></div><div class="nav-item"><a href="/wow4j/pages/92a016/" class="nav-link">软技能</a></div><div class="nav-item"><a href="/wow4j/pages/df3516/" class="nav-link">他山之石</a></div><div class="nav-item"><a href="/wow4j/pages/366b2d/" class="nav-link">开源产品</a></div><div class="nav-item"><a href="/wow4j/pages/fdeb84/" class="nav-link">敬请期待</a></div> <a href="https://github.com//timchen525/wow4j" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/wow4j/pages/19aee3/" class="sidebar-link">概要</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试八股文</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>服务端小技巧合集</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>MySQL 相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis 最佳实践指南</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>文本搜索Elasticsearch</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/3343c6/" class="sidebar-link">垂直电商搜索注意点</a></li><li><a href="/wow4j/pages/dcbb80/" aria-current="page" class="active sidebar-link">关于搜索建议词的分析以及相应的优化方案</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_1-背景" class="sidebar-link">1. 背景</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_2-搜索建议器的指导原则" class="sidebar-link">2. 搜索建议器的指导原则</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_3-搜索建议器实现功能" class="sidebar-link">3.  搜索建议器实现功能</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_4-搜索建议词需要考虑的因素" class="sidebar-link">4.  搜索建议词需要考虑的因素</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_5-基于es-的搜索建议器的用法" class="sidebar-link">5. 基于ES 的搜索建议器的用法</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#_6-自定义搜索建议器" class="sidebar-link">6.  自定义搜索建议器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#优点" class="sidebar-link">优点</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#缺点" class="sidebar-link">缺点</a></li></ul></li><li class="sidebar-sub-header"><a href="/wow4j/pages/dcbb80/#参考文献" class="sidebar-link">参考文献</a></li></ul></li><li><a href="/wow4j/pages/e0e231/" class="sidebar-link">ElasticSearch 临时</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kafka 最佳实践指南</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>架构相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>监控告警</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>防爬风控</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>稳定性 checklist</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>效能工具</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/wow4j/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><span data-v-0c557b5e>后端开发</span></li><li data-v-0c557b5e><span data-v-0c557b5e>文本搜索Elasticsearch</span></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/timchen525/wow4j" target="_blank" title="作者" class="beLink" data-v-0c557b5e>timchen525</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2023-02-01</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">关于搜索建议词的分析以及相应的优化方案<!----></h1>  <div class="theme-vdoing-content content__default"><h2 id="_1-背景"><a href="#_1-背景" class="header-anchor">#</a> 1. 背景</h2> <p>不管是全文搜索引擎，还是垂直搜索系统中，当用户在搜索🔍输入框中输入几个字的时候，会自动下来一些词去自动补全用户可能要搜的词语，这部分的功能，我们称作搜索建议器的功能（英文叫做&quot;suggest&quot;）。本文将介绍下目前主流的搜索建议器的做法，并且给出了一个我们认为更好的搜索建议器的做法。</p> <h2 id="_2-搜索建议器的指导原则"><a href="#_2-搜索建议器的指导原则" class="header-anchor">#</a> 2. 搜索建议器的指导原则</h2> <p>这里，我们给出如下<strong>搜索联想词指导原则</strong>：</p> <ol><li>搜索联想词的个数是<strong>非常有限</strong>的，所以必须尽量有效</li> <li>搜索联想词应该是能够<strong>最贴近用户</strong>想要的结果</li> <li>搜索联想出来的词应该是能够**99%**搜索到商品</li> <li>搜索联想词能够帮用户<strong>纠正</strong>一些错误</li></ol> <h2 id="_3-搜索建议器实现功能"><a href="#_3-搜索建议器实现功能" class="header-anchor">#</a> 3.  搜索建议器实现功能</h2> <p>在这部分我们给出了搜索建议器需要实现的功能，这部分功能不仅是程序员需要考虑能够实现的功能，也可以用于测试用于进行验证搜索建议器的功能是否能够满足基本的使用要求。</p> <p>具体例子如下：</p> <ol><li><p><code>苹果</code>   =》 在A市，不应该出现&quot;苹果醋&quot;，在深圳和广州应该出现“苹果醋”（ 因为“苹果醋”只在广州和深圳有卖）即搜索建议词具有<strong>区域性</strong></p></li> <li><p><code>平果</code>  =》 纠错成&quot;苹果&quot;，即拼音纠错</p></li> <li><p><code>PingGUO</code>=&gt; 出现苹果，即归一化输入词</p></li> <li><p><code>pinguo</code> =》出现苹果，即后鼻音纠错</p></li> <li><p><code>pg</code>  =&gt;  出现pg开头的拼音的前缀，即首字母返回</p></li> <li><p><code>虾n</code> =》不应该出现“鲜花”，即不能将虾n，转成xian去查询</p></li> <li><p><code>虾r</code> =》 出现“虾仁”，即汉字和首字母可出现正确的词</p></li> <li><p><code>长f奶</code> =&gt; 不出现结果，这里不出现是因为要汉字和字母要连着，不能中间插入字母</p></li> <li><p><code>chanfu</code> <code>zhangfu</code>=》应该可以出现“长富”，即支持多音字搜索</p></li> <li><p><code>Kafeii</code> =》 出现咖啡（基于编辑距离进行纠正，推荐大于5个字母才进行）</p></li> <li><p><code>白萝卜</code>、<code>白罗卜</code>  =》 只出现<code>白萝卜</code>   皇上皇  煌上煌的问题，即建议词只出现正确的词</p></li> <li><p>囗<code>=&gt; 纠错成</code>口`，出现口罩相关的名词，即把手写错误的词能够纠正过来</p> <p><code>祙</code> =&gt; 纠错成 <code>袜</code></p></li> <li><p><code>牛奶</code> =》 深圳地区会出现&quot;燕塘牛奶&quot;相关，长沙地区出现&quot;花园牛奶&quot;</p></li> <li><p><code>蘋果</code> =&gt;  繁体字也能够搜索出结果，这个也是通过词归一化处理</p></li></ol> <h2 id="_4-搜索建议词需要考虑的因素"><a href="#_4-搜索建议词需要考虑的因素" class="header-anchor">#</a> 4.  搜索建议词需要考虑的因素</h2> <ol><li>建议词的来源可以是商品的分类名称、品牌名称、热搜词，也可以是一些组合词，还可以是一些自定义添加的词。</li> <li>搜索建议词需要考虑去重，比如：“QQ”和&quot;qq&quot;应该是相同的。</li> <li>搜索建议词每个词关联的商品个数，为了避免对用户搜索的影响。因此在凌晨执行，并且使用单线程调用。（使用Multi search 中的count，以及批量插入）</li> <li>搜索建议服务，思路还是先查缓存，是否匹配到缓存的记录，如果匹配则直接返回。否则去es中进行查询。</li> <li>返回结果为空的结果，此时需要增加拼写纠错的处理。(可以建一个纠错表)</li></ol> <h2 id="_5-基于es-的搜索建议器的用法"><a href="#_5-基于es-的搜索建议器的用法" class="header-anchor">#</a> 5. 基于ES 的搜索建议器的用法</h2> <blockquote><p>suggester基本原理是将输入的文本分解为token，然后在索引的字典里查找相似的term并返回。根据使用场景的不同，在Elasticsearch里面涉及了4种类别的suggester，分别是：</p> <ol><li>Term Suggester</li> <li>Phrase Suggester</li> <li>Completion Suggester</li> <li>Context Suggester</li></ol></blockquote> <p>我们依次讲解下，上述4中类别的suggester的用法。</p> <ol><li>Term Suggester</li></ol> <p>三种suggest_mode:</p> <p>missing:如果词存在，则不给出相似项。</p> <p>popular :如果词存在，且有相似项，则给出。</p> <p>always:不管token是否存在词典里，都给出相似项。</p> <p>尝试了下，貌似term suggester对于中文是不适用的</p> <p>下面这段是中文的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>DELETE blogs
+PUT /blogs/
+{
+  &quot;mappings&quot;: {
+    &quot;tech&quot;: {
+      &quot;properties&quot;: {
+        &quot;body&quot;: {
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+          &quot;search_analyzer&quot;: &quot;ik_smart&quot;
+        }
+      }
+    }
+  }
+}
+
+POST _bulk/?refresh=true
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;blogs&quot;, &quot;_type&quot; : &quot;tech&quot; } }
+{ &quot;body&quot;: &quot;长富牛奶&quot;}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;blogs&quot;, &quot;_type&quot; : &quot;tech&quot; } }
+{ &quot;body&quot;: &quot;长富奶&quot;}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;blogs&quot;, &quot;_type&quot; : &quot;tech&quot; } }
+{ &quot;body&quot;: &quot;奶粉&quot;}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;blogs&quot;, &quot;_type&quot; : &quot;tech&quot; } }
+{ &quot;body&quot;: &quot;牛奶&quot;}
+
+POST _bulk/?refresh=true
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;blogs&quot;, &quot;_type&quot; : &quot;tech&quot; } }
+{ &quot;body&quot;: &quot;niunai&quot;}
+
+
+POST _analyze
+{
+  &quot;analyzer&quot;: &quot;ik_smart&quot;, 
+  &quot;text&quot;: [
+    &quot;长富牛奶&quot;,
+    &quot;长富奶&quot;,
+    &quot;奶粉&quot;,
+    &quot;牛奶&quot;
+  ]
+}
+
+POST /blogs/_search
+{ 
+  &quot;suggest&quot;: {
+    &quot;my-suggestion&quot;: {
+      &quot;text&quot;: &quot;niunai&quot;,
+      &quot;term&quot;: {
+        &quot;suggest_mode&quot;: &quot;popular&quot;,
+        &quot;field&quot;: &quot;body&quot;
+      }
+    }
+  }
+}
+</code></pre></div><ol start="2"><li>Phrase Suggester</li></ol> <p>在Term Suggester的基础之上，会考虑多个Term之间的关系，比如：是否同时出现在索引的原文中，相邻程度，以及词频，</p> <ol start="3"><li>Completion Suggester</li></ol> <p>主要应用场景是自动自动补全，每输入一个字符，即时发送一次请求到服务端查询可能的匹配项，将数据变成FST，只能用于<strong>前缀匹配</strong>，这也是Completion Suggester的局限所在。为了使用Completion Suggester,字段的类型需要专门定义。</p> <p>有两个参数：</p> <p>preserve_separators：</p> <p>preserve_position_increments：</p> <p>request_cache=true 查询从5ms变成1ms</p> <h2 id="_6-自定义搜索建议器"><a href="#_6-自定义搜索建议器" class="header-anchor">#</a> 6.  自定义搜索建议器</h2> <p>基于ES suggester completion，内部用FST（Finite State Transducer）,只能用于前缀匹配，这也是Completion Suggester的局限所在。我们现在的搜索联想词可以中缀匹配，是因为使用了ngram（min_gram: 1, max_gram: 10），在入库的时候把所有的词进行拆分。</p> <blockquote><p>比如：长富牛奶，会拆成“长、富、牛、奶、长富、富牛、牛奶、长富牛、富牛奶、长富牛奶”</p></blockquote> <p>另外，使用了ES 的拼音分词器，支持用户输入拼音搜索相关的联想词，以及将输入的中文词也利用对应的拼音进行匹配。</p> <p>基于ES，不使用ES自带的搜索建议器Suggester，我们打算自己构建一个用于搜索联想词的索引，与旧有的搜索联想词对比如下：</p> <h3 id="优点"><a href="#优点" class="header-anchor">#</a> 优点</h3> <ol><li>索引更轻量级。因为结构简单，同样的<strong>2万</strong>条数据，旧的搜索联想词索引占用<code>70M</code>，而 新的搜索联想词占用空间为<code>15M</code></li> <li>排查问题更方便，对于入库的词如何进行拆分，是通过我们自身的应用程序代码进行控制，而且拆分结果直接可以在es中进行数据查看</li> <li>可操作空间更大，可以自主确定，怎样的词可以查找其他相关的词</li></ol> <h3 id="缺点"><a href="#缺点" class="header-anchor">#</a> 缺点</h3> <ol><li>有一定代码维护成本</li> <li>分词等原理与ES搜索引擎的分词等原理解耦，可能不利于维护</li> <li>与搜索联想词对比，数据不是放在缓存中(通过request 中cache进行解决)</li></ol> <p>我们的方案，mapping构建如下：</p> <div class="language- extra-class"><pre class="language-text"><code>PUT search_suggester?include_type_name=false
+{
+  &quot;aliases&quot;: {
+    &quot;alias_search_suggester&quot;: {
+    }
+  },
+  &quot;settings&quot;: {
+    &quot;number_of_shards&quot;: 3,
+    &quot;number_of_routing_shards&quot;: 9,
+    &quot;number_of_replicas&quot;: 0,
+    &quot;refresh_interval&quot;: &quot;1s&quot;,
+    &quot;index&quot;:{
+        &quot;sort.field&quot;:[&quot;frequency&quot;, &quot;sku_num&quot;],
+        &quot;sort.order&quot;:[&quot;desc&quot;, &quot;desc&quot;]
+    },
+    &quot;index.search.slowlog.threshold.query.trace&quot;: &quot;20ms&quot;,
+    &quot;index.search.slowlog.threshold.query.debug&quot;: &quot;100ms&quot;,
+    &quot;index.search.slowlog.threshold.query.info&quot;: &quot;250ms&quot;,
+    &quot;index.search.slowlog.threshold.query.warn&quot;: &quot;500ms&quot;,
+    &quot;index.search.slowlog.threshold.fetch.trace&quot;: &quot;20ms&quot;,
+    &quot;index.search.slowlog.threshold.fetch.debug&quot;: &quot;100ms&quot;,
+    &quot;index.search.slowlog.threshold.fetch.info&quot;: &quot;250ms&quot;,
+    &quot;index.search.slowlog.threshold.fetch.warn&quot;: &quot;500ms&quot;,
+    &quot;index.indexing.slowlog.threshold.index.trace&quot;: &quot;20ms&quot;,
+    &quot;index.indexing.slowlog.threshold.index.debug&quot;: &quot;100ms&quot;,
+    &quot;index.indexing.slowlog.threshold.index.info&quot;: &quot;250ms&quot;,
+    &quot;index.indexing.slowlog.threshold.index.warn&quot;: &quot;500ms&quot;
+  },
+  &quot;mappings&quot;: {
+    &quot;_routing&quot;: {
+      &quot;required&quot;: true
+    },
+    &quot;dynamic&quot;:&quot;strict&quot;,
+    &quot;properties&quot;: {
+      &quot;query&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+         &quot;doc_values&quot;: false,
+         &quot;norms&quot;: false 
+      },
+      &quot;city_zip&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false
+      },
+      &quot;term_prefixs&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false,
+        &quot;copy_to&quot;: &quot;search_suggester_all&quot;
+      },
+      &quot;term_pinyin&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false,
+        &quot;copy_to&quot;: &quot;search_suggester_all&quot;
+      },
+      &quot;term_shouzimu&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false,
+        &quot;copy_to&quot;: &quot;search_suggester_all&quot;
+      },
+      &quot;pinyin_prefixs&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false,
+        &quot;copy_to&quot;: &quot;search_suggester_all&quot;
+      },
+      &quot;shouzimu_prefixs&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+         &quot;norms&quot;: false,
+         &quot;copy_to&quot;: &quot;search_suggester_all&quot;
+      },
+      &quot;frequency&quot;: {
+        &quot;type&quot;: &quot;long&quot;
+      },
+      &quot;sku_num&quot;: {
+        &quot;type&quot;: &quot;long&quot;
+      },
+      &quot;search_suggester_all&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;doc_values&quot;: false,
+        &quot;norms&quot;: false
+      }
+    }
+  }
+}
+</code></pre></div><p>说明：</p> <ol><li>term_prefixs : 中文词前缀</li> <li>term_pinyin：中文词拼音</li> <li>term_shouzimu：中文词首字母前缀</li> <li>pinyin_prefixs：拼音前缀</li> <li>shouzimu_prefixs：首字母前缀</li> <li>...</li></ol> <p>将相应的词，ik拆词，拼音拆词，组合中文和拼音等，按照上述需要的规则，进行拆分，然后插入到索引中。</p> <p>查询的时候，对于ES的查询可以只查询search_suggester_all这个字段啦。</p> <p><code>查询DSL语句如下：</code></p> <div class="language- extra-class"><pre class="language-text"><code>GET alias_search_suggester/_search
+{
+    &quot;from&quot;: 0,
+    &quot;size&quot;: 10,
+    &quot;query&quot;: {
+        &quot;bool&quot;: {
+            &quot;filter&quot;: [
+                {
+                    &quot;term&quot;: {
+                        &quot;city_zip&quot;: {
+                            &quot;value&quot;: &quot;400100&quot;,
+                            &quot;boost&quot;: 1
+                        }
+                    }
+                },
+                {
+                    &quot;term&quot;: {
+                        &quot;search_suggester_all&quot;: {
+                            &quot;value&quot;: &quot;花园&quot;,
+                            &quot;boost&quot;: 1
+                        }
+                    }
+                }
+            ],
+            &quot;adjust_pure_negative&quot;: true,
+            &quot;boost&quot;: 1
+        }
+    },
+    &quot;_source&quot;: {
+        &quot;includes&quot;: [
+            &quot;query&quot;,
+            &quot;sku_num&quot;
+        ],
+        &quot;excludes&quot;: []
+    },
+    &quot;sort&quot;: [
+        {
+            &quot;frequency&quot;: {
+                &quot;order&quot;: &quot;desc&quot;
+            }
+        },
+        {
+            &quot;sku_num&quot;: {
+                &quot;order&quot;: &quot;desc&quot;
+            }
+        }
+    ],
+    &quot;track_total_hits&quot;: false
+}
+</code></pre></div><p>使用到的工具包有：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!-- ik分词 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
+    &lt;version&gt;8.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-queryparser&lt;/artifactId&gt;
+    &lt;version&gt;8.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
+    &lt;artifactId&gt;lucene-analyzers-common&lt;/artifactId&gt;
+    &lt;version&gt;8.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 繁体转简体 --&gt;
+&lt;dependency&gt;
+		&lt;groupId&gt;com.github.houbb&lt;/groupId&gt;
+		&lt;artifactId&gt;opencc4j&lt;/artifactId&gt;
+	&lt;version&gt;1.0.2&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 汉字转拼音 --&gt;
+&lt;dependency&gt;
+		&lt;groupId&gt;com.belerweb&lt;/groupId&gt;
+		&lt;artifactId&gt;pinyin4j&lt;/artifactId&gt;
+		&lt;version&gt;2.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div><h2 id="参考文献"><a href="#参考文献" class="header-anchor">#</a> 参考文献</h2> <ol><li>https://blog.csdn.net/wwd0501/article/details/80595201</li> <li>https://www.jianshu.com/p/9e2c6a8e1b54  (该篇文档较详细的介绍搜索中文搜索建议词的实现方式)</li></ol></div></div> <div class="page-slot page-slot-bottom">
+  <div class="wwads-cn wwads-horizontal pageB" data-id="136" style="width:100%;max-height:80px;min-height:auto;"></div>
+  <style>
+    .pageB img{width:80px!important;}
+    .wwads-horizontal .wwads-text, .wwads-content .wwads-text{line-height:1;}
+  </style>
+  </div> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023/03/22, 15:21:20</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/wow4j/pages/3343c6/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">垂直电商搜索注意点</div></a> <a href="/wow4j/pages/e0e231/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">ElasticSearch 临时</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/wow4j/pages/3343c6/" class="prev">垂直电商搜索注意点</a></span> <span class="next"><a href="/wow4j/pages/e0e231/">ElasticSearch 临时</a>→
+      </span></p></div></div></div> <!----></main></div> <div class="footer"><div class="icons"><a href="mailto:461330266@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/timchen525" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2023
+    <span>timchen525 | MIT License</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div>
+    <div class="wwads-cn wwads-vertical windowRB" data-id="136" style="max-width:160px;
+    min-width: auto;min-height:auto;"></div>
+    <style>
+      .windowRB{ padding: 0;}
+      .windowRB .wwads-img{margin-top: 10px;}
+      .windowRB .wwads-content{margin: 0 10px 10px 10px;}
+      .custom-html-window-rb .close-but{
+        display: none;
+      }
+    </style>
+  </div></div></div></div><div class="global-ui"><div></div></div></div>
+    <script src="/wow4j/assets/js/app.9c6a4848.js" defer></script><script src="/wow4j/assets/js/2.290edd30.js" defer></script><script src="/wow4j/assets/js/43.32f5429c.js" defer></script>
+  </body>
+</html>

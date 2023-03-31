@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{485:function(t,e,n){"use strict";n.r(e);var s=n(19),l=Object(s.a)({},(function(){var t=this.$createElement,e=this._self._c||t;return e("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[e("ol",[e("li",[this._v("报表导出，注意不要让ES CPU 和 内存密集")])])])}),[],!1,null,null,null);e.default=l.exports}}]);

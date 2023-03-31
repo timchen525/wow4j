@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySQL 建表的一些规范 | Wow4j</title>
+    <meta name="generator" content="VuePress 1.9.2">
+    <link rel="icon" href="/wow4j/img/favicon.ico">
+    <script src="https://cdn.wwads.cn/js/makemoney.js" type="text/javascript"></script>
+    <meta name="description" content="一个神奇的个人网站">
+    <meta name="keywords" content="vuepress,theme,blog,vdoing">
+    <meta name="theme-color" content="#11a8cd">
+    <meta name="wwads-cn-verify" content="6c4b761a28b734fe93831e3fb400ce87">
+    
+    <link rel="preload" href="/wow4j/assets/css/0.styles.2be8a3b8.css" as="style"><link rel="preload" href="/wow4j/assets/js/app.9c6a4848.js" as="script"><link rel="preload" href="/wow4j/assets/js/2.290edd30.js" as="script"><link rel="preload" href="/wow4j/assets/js/40.1ce6d418.js" as="script"><link rel="prefetch" href="/wow4j/assets/js/10.cc49bee5.js"><link rel="prefetch" href="/wow4j/assets/js/100.d0d750a5.js"><link rel="prefetch" href="/wow4j/assets/js/101.c886cab2.js"><link rel="prefetch" href="/wow4j/assets/js/102.19f8414a.js"><link rel="prefetch" href="/wow4j/assets/js/103.77106e4e.js"><link rel="prefetch" href="/wow4j/assets/js/104.1c378d9d.js"><link rel="prefetch" href="/wow4j/assets/js/105.ea2775b6.js"><link rel="prefetch" href="/wow4j/assets/js/106.8cd360a9.js"><link rel="prefetch" href="/wow4j/assets/js/107.723f3b88.js"><link rel="prefetch" href="/wow4j/assets/js/108.402b1319.js"><link rel="prefetch" href="/wow4j/assets/js/109.b484419b.js"><link rel="prefetch" href="/wow4j/assets/js/11.62833ef0.js"><link rel="prefetch" href="/wow4j/assets/js/110.40c42c91.js"><link rel="prefetch" href="/wow4j/assets/js/111.9d56f07a.js"><link rel="prefetch" href="/wow4j/assets/js/112.0481f6bd.js"><link rel="prefetch" href="/wow4j/assets/js/113.8566a1ff.js"><link rel="prefetch" href="/wow4j/assets/js/114.7b735cde.js"><link rel="prefetch" href="/wow4j/assets/js/115.664878dd.js"><link rel="prefetch" href="/wow4j/assets/js/116.b377ad9f.js"><link rel="prefetch" href="/wow4j/assets/js/117.a88ec584.js"><link rel="prefetch" href="/wow4j/assets/js/118.fe3f20bc.js"><link rel="prefetch" href="/wow4j/assets/js/119.3e9fe0d2.js"><link rel="prefetch" href="/wow4j/assets/js/12.5f6f9546.js"><link rel="prefetch" href="/wow4j/assets/js/120.56830621.js"><link rel="prefetch" href="/wow4j/assets/js/121.29e5af93.js"><link rel="prefetch" href="/wow4j/assets/js/122.0ce81628.js"><link rel="prefetch" href="/wow4j/assets/js/123.be47c083.js"><link rel="prefetch" href="/wow4j/assets/js/124.838c4ccc.js"><link rel="prefetch" href="/wow4j/assets/js/125.864730ae.js"><link rel="prefetch" href="/wow4j/assets/js/126.77dfdbc4.js"><link rel="prefetch" href="/wow4j/assets/js/127.c6139497.js"><link rel="prefetch" href="/wow4j/assets/js/128.0f244320.js"><link rel="prefetch" href="/wow4j/assets/js/129.bd5a745a.js"><link rel="prefetch" href="/wow4j/assets/js/13.52cbcaa6.js"><link rel="prefetch" href="/wow4j/assets/js/130.fd400d64.js"><link rel="prefetch" href="/wow4j/assets/js/131.017cf0e1.js"><link rel="prefetch" href="/wow4j/assets/js/132.0700c2f1.js"><link rel="prefetch" href="/wow4j/assets/js/133.f5f2c958.js"><link rel="prefetch" href="/wow4j/assets/js/134.3d973545.js"><link rel="prefetch" href="/wow4j/assets/js/135.d1446f2c.js"><link rel="prefetch" href="/wow4j/assets/js/136.bd089225.js"><link rel="prefetch" href="/wow4j/assets/js/137.8d60eb0b.js"><link rel="prefetch" href="/wow4j/assets/js/138.8ca213e2.js"><link rel="prefetch" href="/wow4j/assets/js/139.c2229689.js"><link rel="prefetch" href="/wow4j/assets/js/14.9598724a.js"><link rel="prefetch" href="/wow4j/assets/js/140.e3136a19.js"><link rel="prefetch" href="/wow4j/assets/js/141.f23ba9ac.js"><link rel="prefetch" href="/wow4j/assets/js/142.d11ce65a.js"><link rel="prefetch" href="/wow4j/assets/js/143.57a58889.js"><link rel="prefetch" href="/wow4j/assets/js/144.098dfd5b.js"><link rel="prefetch" href="/wow4j/assets/js/145.27e182e2.js"><link rel="prefetch" href="/wow4j/assets/js/146.7690d2b5.js"><link rel="prefetch" href="/wow4j/assets/js/147.bcc94f51.js"><link rel="prefetch" href="/wow4j/assets/js/148.ee9a759b.js"><link rel="prefetch" href="/wow4j/assets/js/149.46774ec2.js"><link rel="prefetch" href="/wow4j/assets/js/15.707c3321.js"><link rel="prefetch" href="/wow4j/assets/js/150.7cc49407.js"><link rel="prefetch" href="/wow4j/assets/js/151.75f299ba.js"><link rel="prefetch" href="/wow4j/assets/js/152.8f4725a5.js"><link rel="prefetch" href="/wow4j/assets/js/153.bc2293ac.js"><link rel="prefetch" href="/wow4j/assets/js/154.a139674e.js"><link rel="prefetch" href="/wow4j/assets/js/16.d1310490.js"><link rel="prefetch" href="/wow4j/assets/js/17.c7e6087b.js"><link rel="prefetch" href="/wow4j/assets/js/18.d6e79f99.js"><link rel="prefetch" href="/wow4j/assets/js/19.f17afc4a.js"><link rel="prefetch" href="/wow4j/assets/js/20.a637b76c.js"><link rel="prefetch" href="/wow4j/assets/js/21.6851dbb3.js"><link rel="prefetch" href="/wow4j/assets/js/22.72f87f18.js"><link rel="prefetch" href="/wow4j/assets/js/23.7cd46cec.js"><link rel="prefetch" href="/wow4j/assets/js/24.665a7da0.js"><link rel="prefetch" href="/wow4j/assets/js/25.1cce4c66.js"><link rel="prefetch" href="/wow4j/assets/js/26.7e23f5c7.js"><link rel="prefetch" href="/wow4j/assets/js/27.3746869d.js"><link rel="prefetch" href="/wow4j/assets/js/28.baeff496.js"><link rel="prefetch" href="/wow4j/assets/js/29.f4052d4b.js"><link rel="prefetch" href="/wow4j/assets/js/3.38193b7d.js"><link rel="prefetch" href="/wow4j/assets/js/30.d84f8605.js"><link rel="prefetch" href="/wow4j/assets/js/31.792bf7ba.js"><link rel="prefetch" href="/wow4j/assets/js/32.e327ed3c.js"><link rel="prefetch" href="/wow4j/assets/js/33.4d34e13b.js"><link rel="prefetch" href="/wow4j/assets/js/34.f3c67117.js"><link rel="prefetch" href="/wow4j/assets/js/35.ebf77968.js"><link rel="prefetch" href="/wow4j/assets/js/36.76d36ea3.js"><link rel="prefetch" href="/wow4j/assets/js/37.a9305c46.js"><link rel="prefetch" href="/wow4j/assets/js/38.954c0bf8.js"><link rel="prefetch" href="/wow4j/assets/js/39.0529bd6b.js"><link rel="prefetch" href="/wow4j/assets/js/4.966a8281.js"><link rel="prefetch" href="/wow4j/assets/js/41.0dd0fdab.js"><link rel="prefetch" href="/wow4j/assets/js/42.4c5d7fd5.js"><link rel="prefetch" href="/wow4j/assets/js/43.32f5429c.js"><link rel="prefetch" href="/wow4j/assets/js/44.af99ecf7.js"><link rel="prefetch" href="/wow4j/assets/js/45.f3f5b339.js"><link rel="prefetch" href="/wow4j/assets/js/46.d1b05cd5.js"><link rel="prefetch" href="/wow4j/assets/js/47.bad9e247.js"><link rel="prefetch" href="/wow4j/assets/js/48.fc6cfc68.js"><link rel="prefetch" href="/wow4j/assets/js/49.557e5fef.js"><link rel="prefetch" href="/wow4j/assets/js/5.0181d5e8.js"><link rel="prefetch" href="/wow4j/assets/js/50.4839f893.js"><link rel="prefetch" href="/wow4j/assets/js/51.5f3821cd.js"><link rel="prefetch" href="/wow4j/assets/js/52.90d46757.js"><link rel="prefetch" href="/wow4j/assets/js/53.fbbacabf.js"><link rel="prefetch" href="/wow4j/assets/js/54.de3636aa.js"><link rel="prefetch" href="/wow4j/assets/js/55.440a63f1.js"><link rel="prefetch" href="/wow4j/assets/js/56.e8e725aa.js"><link rel="prefetch" href="/wow4j/assets/js/57.151643fd.js"><link rel="prefetch" href="/wow4j/assets/js/58.2961ced5.js"><link rel="prefetch" href="/wow4j/assets/js/59.3599dd07.js"><link rel="prefetch" href="/wow4j/assets/js/6.483da95d.js"><link rel="prefetch" href="/wow4j/assets/js/60.9d37925e.js"><link rel="prefetch" href="/wow4j/assets/js/61.bf69f6a4.js"><link rel="prefetch" href="/wow4j/assets/js/62.676ff119.js"><link rel="prefetch" href="/wow4j/assets/js/63.bf8e3019.js"><link rel="prefetch" href="/wow4j/assets/js/64.aa7847d7.js"><link rel="prefetch" href="/wow4j/assets/js/65.aaa6efcd.js"><link rel="prefetch" href="/wow4j/assets/js/66.b0a59fd1.js"><link rel="prefetch" href="/wow4j/assets/js/67.cdb4f3b4.js"><link rel="prefetch" href="/wow4j/assets/js/68.bc5f82db.js"><link rel="prefetch" href="/wow4j/assets/js/69.e4305a92.js"><link rel="prefetch" href="/wow4j/assets/js/7.37ad2f1b.js"><link rel="prefetch" href="/wow4j/assets/js/70.d9573a2e.js"><link rel="prefetch" href="/wow4j/assets/js/71.5b99c14c.js"><link rel="prefetch" href="/wow4j/assets/js/72.b7538ef4.js"><link rel="prefetch" href="/wow4j/assets/js/73.773b5e16.js"><link rel="prefetch" href="/wow4j/assets/js/74.273d0158.js"><link rel="prefetch" href="/wow4j/assets/js/75.6f5e1a51.js"><link rel="prefetch" href="/wow4j/assets/js/76.7f42b6e5.js"><link rel="prefetch" href="/wow4j/assets/js/77.493a9b73.js"><link rel="prefetch" href="/wow4j/assets/js/78.58c79ad9.js"><link rel="prefetch" href="/wow4j/assets/js/79.8651ff93.js"><link rel="prefetch" href="/wow4j/assets/js/8.3e9d78b0.js"><link rel="prefetch" href="/wow4j/assets/js/80.06efe637.js"><link rel="prefetch" href="/wow4j/assets/js/81.13f1b905.js"><link rel="prefetch" href="/wow4j/assets/js/82.89f2eae1.js"><link rel="prefetch" href="/wow4j/assets/js/83.95bf174f.js"><link rel="prefetch" href="/wow4j/assets/js/84.7d6d07f7.js"><link rel="prefetch" href="/wow4j/assets/js/85.86ad3916.js"><link rel="prefetch" href="/wow4j/assets/js/86.7bc05860.js"><link rel="prefetch" href="/wow4j/assets/js/87.11ec1120.js"><link rel="prefetch" href="/wow4j/assets/js/88.17d641d1.js"><link rel="prefetch" href="/wow4j/assets/js/89.a896b238.js"><link rel="prefetch" href="/wow4j/assets/js/9.147b07eb.js"><link rel="prefetch" href="/wow4j/assets/js/90.6a4f9bbe.js"><link rel="prefetch" href="/wow4j/assets/js/91.f5aac00e.js"><link rel="prefetch" href="/wow4j/assets/js/92.04032d2e.js"><link rel="prefetch" href="/wow4j/assets/js/93.7f0b6b5c.js"><link rel="prefetch" href="/wow4j/assets/js/94.c659cc62.js"><link rel="prefetch" href="/wow4j/assets/js/95.97436f9a.js"><link rel="prefetch" href="/wow4j/assets/js/96.856d5f2f.js"><link rel="prefetch" href="/wow4j/assets/js/97.b2d11e35.js"><link rel="prefetch" href="/wow4j/assets/js/98.e57c9fff.js"><link rel="prefetch" href="/wow4j/assets/js/99.acf8a766.js">
+    <link rel="stylesheet" href="/wow4j/assets/css/0.styles.2be8a3b8.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wow4j/" class="home-link router-link-active"><img src="https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200409124835.png" alt="Wow4j" class="logo"> <span class="site-name can-hide">Wow4j</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><a href="/wow4j/pages/f380dd/" class="nav-link">个人使用说明书</a></div><div class="nav-item"><a href="/wow4j/pages/19aee3/" class="nav-link">后端开发</a></div><div class="nav-item"><a href="/wow4j/pages/d00ad7/" class="nav-link">前端开发</a></div><div class="nav-item"><a href="/wow4j/pages/ca725f/" class="nav-link">测试开发</a></div><div class="nav-item"><a href="/wow4j/pages/df4369/" class="nav-link">运维开发</a></div><div class="nav-item"><a href="/wow4j/pages/aa09ae/" class="nav-link">大数据开发</a></div><div class="nav-item"><a href="/wow4j/pages/5b4bcd/" class="nav-link">产品&amp;UI交互</a></div><div class="nav-item"><a href="/wow4j/pages/7ba30c/" class="nav-link">团队管理</a></div><div class="nav-item"><a href="/wow4j/pages/92a016/" class="nav-link">软技能</a></div><div class="nav-item"><a href="/wow4j/pages/df3516/" class="nav-link">他山之石</a></div><div class="nav-item"><a href="/wow4j/pages/366b2d/" class="nav-link">开源产品</a></div><div class="nav-item"><a href="/wow4j/pages/fdeb84/" class="nav-link">敬请期待</a></div> <a href="https://github.com//timchen525/wow4j" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/wow4j/" class="nav-link">首页</a></div><div class="nav-item"><a href="/wow4j/pages/f380dd/" class="nav-link">个人使用说明书</a></div><div class="nav-item"><a href="/wow4j/pages/19aee3/" class="nav-link">后端开发</a></div><div class="nav-item"><a href="/wow4j/pages/d00ad7/" class="nav-link">前端开发</a></div><div class="nav-item"><a href="/wow4j/pages/ca725f/" class="nav-link">测试开发</a></div><div class="nav-item"><a href="/wow4j/pages/df4369/" class="nav-link">运维开发</a></div><div class="nav-item"><a href="/wow4j/pages/aa09ae/" class="nav-link">大数据开发</a></div><div class="nav-item"><a href="/wow4j/pages/5b4bcd/" class="nav-link">产品&amp;UI交互</a></div><div class="nav-item"><a href="/wow4j/pages/7ba30c/" class="nav-link">团队管理</a></div><div class="nav-item"><a href="/wow4j/pages/92a016/" class="nav-link">软技能</a></div><div class="nav-item"><a href="/wow4j/pages/df3516/" class="nav-link">他山之石</a></div><div class="nav-item"><a href="/wow4j/pages/366b2d/" class="nav-link">开源产品</a></div><div class="nav-item"><a href="/wow4j/pages/fdeb84/" class="nav-link">敬请期待</a></div> <a href="https://github.com//timchen525/wow4j" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/wow4j/pages/19aee3/" class="sidebar-link">概要</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试八股文</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>服务端小技巧合集</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>MySQL 相关</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wow4j/pages/d7e1e9/" class="sidebar-link">MySQL 索引概要</a></li><li><a href="/wow4j/pages/480b10/" aria-current="page" class="active sidebar-link">MySQL 建表的一些规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_1-添加必要的冗余字段" class="sidebar-link">1. 添加必要的冗余字段</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_2-基于mybatis-plus-的冗余字段设置" class="sidebar-link">2. 基于MyBatis-Plus 的冗余字段设置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_2-1-配置定义-id-生成器" class="sidebar-link">2.1 配置定义 ID 生成器</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_2-2-配置乐观锁和分页插件" class="sidebar-link">2.2 配置乐观锁和分页插件</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_2-3-配置-更新人、更新时间、创建人、创建时间" class="sidebar-link">2.3  配置 更新人、更新时间、创建人、创建时间</a></li><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_2-4-配置逻辑删除" class="sidebar-link">2.4 配置逻辑删除</a></li></ul></li><li class="sidebar-sub-header"><a href="/wow4j/pages/480b10/#_3-总结" class="sidebar-link">3.  总结</a></li></ul></li><li><a href="/wow4j/pages/ea7be2/" class="sidebar-link">MySQL 调优手册</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis 最佳实践指南</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文本搜索Elasticsearch</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kafka 最佳实践指南</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>架构相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>监控告警</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>防爬风控</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>稳定性 checklist</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>效能工具</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/wow4j/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><span data-v-0c557b5e>后端开发</span></li><li data-v-0c557b5e><span data-v-0c557b5e>MySQL 相关</span></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/timchen525/wow4j" target="_blank" title="作者" class="beLink" data-v-0c557b5e>timchen525</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2022-07-18</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">MySQL 建表的一些规范<!----></h1>  <div class="theme-vdoing-content content__default"><p>MySQL  建表规范（补充版）</p> <h2 id="_1-添加必要的冗余字段"><a href="#_1-添加必要的冗余字段" class="header-anchor">#</a> 1. 添加必要的冗余字段</h2> <p>除了默认的业务表，额外必添加以下6个字段：</p> <ul><li><code>id</code> <strong>主键id</strong></li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>`id` BIGINT UNSIGNED NOT NULL COMMENT &quot;主键i&quot;,
+PRIMARY KEY('id')
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>version</code> <strong>版本号</strong></li></ul> <blockquote><ul><li><ul><li><code>MySQL</code>  数据库格式：**</li></ul></li></ul></blockquote> <div class="language- extra-class"><pre class="language-text"><code>`version` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT &quot;版本号&quot;,` 
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code> <span class="token keyword">private</span> <span class="token class-name">Integer</span> version<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>deleted</code> <strong>删除标记（逻辑删除</strong>） =&gt;  对用户透明</li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token punctuation">`</span>deleted<span class="token punctuation">`</span> <span class="token keyword">TINYINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span> <span class="token keyword">COMMENT</span> <span class="token string">&quot;逻辑删除 0=&gt;未删除  1=&gt;删除&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">Integer</span> deleted<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>user_id_update</code> <strong>更新人</strong></li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token punctuation">`</span>user_id_update<span class="token punctuation">`</span> <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">&quot;更新人id&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><p>** <code>Java</code> 代码格式：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">String</span> userIdUpdate<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>time_update</code> <strong>更新时间</strong></li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token punctuation">`</span>time_update<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span> <span class="token keyword">COMMENT</span> <span class="token string">&quot;更新时间戳&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">Long</span> timeUpdate<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>user_id_create</code> <strong>创建人</strong></li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token punctuation">`</span>user_id_create\<span class="token punctuation">`</span> <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">&quot;创建人&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">String</span> userIdCreate<span class="token punctuation">;</span>
+</code></pre></div><ul><li><code>time_create</code> <strong>创建时间</strong></li></ul> <blockquote><p>** <code>MySQL</code>  数据库格式：**</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token punctuation">`</span>time_create<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span> <span class="token keyword">UNSIGNED</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span> <span class="token keyword">COMMENT</span> <span class="token string">&quot;创建时间戳&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><p>** <code>Java</code> 代码格式：**</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">Long</span> timeCreate<span class="token punctuation">;</span>
+</code></pre></div><p>根据上述的字段规范，Demo 如下：</p> <div class="language- extra-class"><pre class="language-text"><code>------------------------------------------
+-- 创建 user 表
+------------------------------------------
+DROP TABLE IF EXISTS user;
+CREATE TABLE user
+(
+ `id` BIGINT UNSIGNED NOT NULL COMMENT &quot;主键id&quot;,
+ `name` VARCHAR(255) NOT NULL COMMENT &quot;姓名&quot;,
+ `age` TINYINT UNSIGNED COMMENT '年龄',
+ `version` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT &quot;版本号&quot;,
+ `deleted` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT &quot;逻辑删除 0=&gt;未删除  1=&gt;删除&quot;,
+ `user_id_update` CHAR(36) NOT NULL COMMENT &quot;更新人id&quot;,
+ `time_update` BIGINT UNSIGNED NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &quot;更新时间戳&quot;,
+ `user_id_create` CHAR(36) NOT NULL COMMENT &quot;创建人&quot;,
+ `time_create` BIGINT UNSIGNED NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &quot;创建时间戳&quot;,
+PRIMARY KEY(`id`)
+)engine=innodb default charset=utf8 COMMENT &quot;用户表&quot;;
+</code></pre></div><h2 id="_2-基于mybatis-plus-的冗余字段设置"><a href="#_2-基于mybatis-plus-的冗余字段设置" class="header-anchor">#</a> 2. 基于MyBatis-Plus 的冗余字段设置</h2> <p>MyBatis-Plus 的官方地址：https://baomidou.com/guide/#%E7%89%B9%E6%80%A7</p> <h3 id="_2-1-配置定义-id-生成器"><a href="#_2-1-配置定义-id-生成器" class="header-anchor">#</a> 2.1 配置定义 ID 生成器</h3> <div class="language- extra-class"><pre class="language-text"><code>/**
+ * MyBatis-plus 配置 自定义 ID 生成器
+ *
+ * @author chenjintian
+ */
+@Component
+@Slf4j
+public class CustomIdGenerator implements IdentifierGenerator {
+  private LeafSnowflakeApiWrapper leafSnowflakeApiWrapper;
+  
+  @Autowired
+  public CustomIdGenerator (LeafSnowflakeApiWrapper leafSnowflakeApiWrapper) {
+     this.leafSnowflakeApiWrapper = leafSnowflakeApiWrapper;
+  }
+  @Override
+  public Number nextId(Object entity) {
+    long id = leafSnowflakeApiWrapper.getId();
+    if (log.isDebugEnabled()) {
+        log.debug(&quot;CustomIdGenerator id:{}.&quot;, id);
+    }
+    return id;
+  }
+}
+
+public class User {
+  /**
+  * 对应数据库的主键id
+  */
+  @TableId(type = IdType.ASSIGN_ID)
+  private Long id;
+}
+</code></pre></div><h3 id="_2-2-配置乐观锁和分页插件"><a href="#_2-2-配置乐观锁和分页插件" class="header-anchor">#</a> 2.2 配置乐观锁和分页插件</h3> <div class="language- extra-class"><pre class="language-text"><code>@MapperScan(&quot;com.ip.profile.service.dao.mapper&quot;)
+@EnableTransactionManagement
+@Configuration
+public class MyBatisPlusConfig {
+  // 注册乐观锁插件
+  @Bean
+  public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+    return new OptimisticLockerInterceptor();
+  }
+
+  // 分页插件
+  @Bean
+  public PaginationInterceptor paginationInterceptor() {
+    PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+    // 设置单页最大的条数为500条
+    paginationInterceptor.setLimit(500);
+    return paginationInterceptor;
+  }
+}
+
+public class User {
+   /**
+  * 版本号（乐观锁） =》对用户透明
+   */
+  @Version
+   private Integer version;
+}
+</code></pre></div><h3 id="_2-3-配置-更新人、更新时间、创建人、创建时间"><a href="#_2-3-配置-更新人、更新时间、创建人、创建时间" class="header-anchor">#</a> 2.3  配置 更新人、更新时间、创建人、创建时间</h3> <div class="language- extra-class"><pre class="language-text"><code>@Slf4j
+@Component
+public class MyMetaObjectHandler implements MetaObjectHandler {
+
+    // 插入时的填充策略
+    @Override
+    public void insertFill(MetaObject metaObject) {
+        if (log.isDebugEnabled()) {
+            log.debug(&quot;start insert fill ...&quot;);
+        }
+
+        long currentTimeStamp = System.currentTimeMillis();
+        this.setFieldValByName(&quot;userIdCreate&quot;, UserUtil.getCurrentUserId(), metaObject);
+        this.setFieldValByName(&quot;timeCreate&quot;, currentTimeStamp, metaObject);
+        this.setFieldValByName(&quot;userIdUpdate&quot;, UserUtil.getCurrentUserId(), metaObject);
+        this.setFieldValByName(&quot;timeUpdate&quot;, currentTimeStamp, metaObject);
+
+        if (log.isDebugEnabled()) {
+            log.debug(&quot;end insert fill, userIdCreate:{}, timeCreate:{}, userIdUpdate:{}, timeUpdate:{}.&quot;,
+                    UserUtil.getCurrentUserId(), currentTimeStamp, UserUtil.getCurrentUserId(), currentTimeStamp);
+        }
+    }
+
+    // 更新时的填充策略
+    @Override
+    public void updateFill(MetaObject metaObject) {
+        if (log.isDebugEnabled()) {
+            log.debug(&quot;start update fill ...&quot;);
+        }
+
+        long currentTimeStamp = System.currentTimeMillis();
+        this.setFieldValByName(&quot;userIdUpdate&quot;, UserUtil.getCurrentUserId(), metaObject);
+        this.setFieldValByName(&quot;timeUpdate&quot;, currentTimeStamp, metaObject);
+
+        if (log.isDebugEnabled()) {
+            log.debug(&quot;end update fill, userIdUpdate:{}, timeUpdate:{}.&quot;, UserUtil.getCurrentUserId(), currentTimeStamp);
+        }
+    }
+}
+
+public class User {
+	/**
+	 * 更新人 ID
+	 */
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	private String userIdUpdate;
+
+	/**
+	 * 更新时间（自动填充）=》对用户透明
+	 */
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	private Long timeUpdate;
+
+	/**
+	 * 创建人 ID
+	 */
+	@TableField(fill = FieldFill.INSERT)
+	private String userIdCreate;
+
+	/**
+	 * 创建时间（自动填充）=》对用户透明
+	 */
+	@TableField(fill = FieldFill.INSERT)
+	private Long timeCreate;
+}
+</code></pre></div><h3 id="_2-4-配置逻辑删除"><a href="#_2-4-配置逻辑删除" class="header-anchor">#</a> 2.4 配置逻辑删除</h3> <div class="language- extra-class"><pre class="language-text"><code># 逻辑删除
+mybatis-plus.global-config.db-config.logic-delete-field=deleted
+mybatis-plus.global-config.db-config.logic-delete-value=1
+mybatis-plus.global-config.db-config.logic-not-delete-value=0
+
+public class User {
+  /**
+  * 删除标记（逻辑删除）=&gt; 对用户透明
+  */
+  @TableLogic
+  private Integer deleted;
+}
+</code></pre></div><h2 id="_3-总结"><a href="#_3-总结" class="header-anchor">#</a> 3.  总结</h2> <p>MyBatis-Plus 帮助开发人员创建主键id，版本号，以及插入时的填充内容（更新人、更新时间、创建人、创建时间），这些工作MyBatis-Plus自动完成，极大的节<strong>省开发人员的时间</strong>，而且代码会更规范。</p> <p><strong>补充：添加的Maven的依赖如下：</strong></p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!-- MySQL 驱动 + MyBatis-Plus --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.3.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;p6spy&lt;/groupId&gt;
+    &lt;artifactId&gt;p6spy&lt;/artifactId&gt;
+    &lt;version&gt;3.9.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div></div></div> <div class="page-slot page-slot-bottom">
+  <div class="wwads-cn wwads-horizontal pageB" data-id="136" style="width:100%;max-height:80px;min-height:auto;"></div>
+  <style>
+    .pageB img{width:80px!important;}
+    .wwads-horizontal .wwads-text, .wwads-content .wwads-text{line-height:1;}
+  </style>
+  </div> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023/02/06, 09:35:40</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/wow4j/pages/d7e1e9/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">MySQL 索引概要</div></a> <a href="/wow4j/pages/ea7be2/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">MySQL 调优手册</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/wow4j/pages/d7e1e9/" class="prev">MySQL 索引概要</a></span> <span class="next"><a href="/wow4j/pages/ea7be2/">MySQL 调优手册</a>→
+      </span></p></div></div></div> <!----></main></div> <div class="footer"><div class="icons"><a href="mailto:461330266@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/timchen525" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2023
+    <span>timchen525 | MIT License</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div>
+    <div class="wwads-cn wwads-vertical windowRB" data-id="136" style="max-width:160px;
+    min-width: auto;min-height:auto;"></div>
+    <style>
+      .windowRB{ padding: 0;}
+      .windowRB .wwads-img{margin-top: 10px;}
+      .windowRB .wwads-content{margin: 0 10px 10px 10px;}
+      .custom-html-window-rb .close-but{
+        display: none;
+      }
+    </style>
+  </div></div></div></div><div class="global-ui"><div></div></div></div>
+    <script src="/wow4j/assets/js/app.9c6a4848.js" defer></script><script src="/wow4j/assets/js/2.290edd30.js" defer></script><script src="/wow4j/assets/js/40.1ce6d418.js" defer></script>
+  </body>
+</html>
