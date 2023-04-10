@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 项目启动类
- *
  */
 @SpringBootApplication(scanBasePackages = {SystemConst.BASE_PACKAGES})
 public class BusinessApplication {

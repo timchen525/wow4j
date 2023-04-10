@@ -68,7 +68,7 @@
           }
         ]
       };
-      this.request.get("http://localhost:10086/api/echarts/example").then(res => {
+      this.request.get("http://localhost:10086/echarts/example").then(res => {
         // 清空
         option.xAxis.data = res.data.x
         option.series[0].data = res.data.y

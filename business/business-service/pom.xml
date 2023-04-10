@@ -170,6 +170,13 @@
             <artifactId>graphql-java-tools</artifactId>
         </dependency>
 
+        <!-- skywalking-toolkit -->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
+            <version>8.13.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
